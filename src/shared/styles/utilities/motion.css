@@ -1,0 +1,25 @@
+/*
+ * Motion Utilities
+ *
+ * Shared restrained transition helpers. These reuse design tokens and respect
+ * reduced-motion preferences.
+ */
+
+.motion-transition {
+  transition-duration: var(--motion-duration-transition);
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: var(--motion-ease-feedback);
+}
+
+.motion-transition-colors {
+  transition-duration: var(--motion-duration-feedback);
+  transition-property: color, background-color, border-color;
+  transition-timing-function: var(--motion-ease-feedback);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-transition,
+  .motion-transition-colors {
+    transition-duration: var(--duration-instant);
+  }
+}

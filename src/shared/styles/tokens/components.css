@@ -1,0 +1,68 @@
+/*
+ * Component Token Contracts
+ *
+ * These tokens define reusable contracts for repeated UI patterns. They map to
+ * semantic tokens rather than raw primitives, so themes can swap underneath.
+ */
+
+:root {
+  /*
+   * Cards
+   *
+   * Shared surface contract for repeated content containers.
+   */
+  --component-card-background: var(--color-surface);
+  --component-card-foreground: var(--color-text-primary);
+  --component-card-border: var(--color-border-subtle);
+  --component-card-radius: var(--shape-radius-large);
+  --component-card-shadow: var(--elevation-raised);
+
+  /*
+   * Buttons
+   *
+   * Minimal button roles for primary and secondary actions.
+   */
+  --component-button-primary-background: var(--color-brand);
+  --component-button-primary-foreground: var(--color-brand-contrast);
+  --component-button-primary-background-hover: var(--color-brand-strong);
+  --component-button-secondary-background: var(--color-surface-muted);
+  --component-button-secondary-foreground: var(--color-text-primary);
+  --component-button-secondary-border: var(--color-border);
+  --component-button-radius: var(--shape-radius-default);
+
+  /*
+   * Navigation
+   *
+   * Shared contract for site-level navigation surfaces and links.
+   */
+  --component-navigation-background: var(--color-canvas);
+  --component-navigation-foreground: var(--color-text-secondary);
+  --component-navigation-link-active: var(--color-text-primary);
+  --component-navigation-border: var(--color-border-subtle);
+
+  /*
+   * Sections
+   *
+   * Reusable layout rhythm for page sections.
+   */
+  --component-section-background: var(--color-canvas);
+  --component-section-background-alt: var(--color-canvas-subtle);
+  --component-section-gap: var(--layout-section-gap-md);
+
+  /*
+   * Badges
+   *
+   * Compact label contract for skills, metadata, and status-like tags.
+   */
+  --component-badge-background: var(--color-surface-muted);
+  --component-badge-foreground: var(--color-text-secondary);
+  --component-badge-border: var(--color-border-subtle);
+  --component-badge-radius: var(--shape-radius-round);
+
+  /*
+   * Dividers
+   *
+   * Shared divider color for section and content separation.
+   */
+  --component-divider-color: var(--color-border-subtle);
+}

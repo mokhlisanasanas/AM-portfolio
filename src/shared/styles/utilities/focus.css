@@ -1,0 +1,20 @@
+/*
+ * Focus Utilities
+ *
+ * Adds accessible focus-visible behavior without removing browser focus
+ * globally. These utilities are theme-aware through semantic focus tokens.
+ */
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--border-width-2) solid var(--color-focus-ring);
+  outline-offset: var(--space-1);
+}
+
+.focus-ring {
+  outline: var(--border-width-2) solid transparent;
+  outline-offset: var(--space-1);
+}
+
+.focus-ring:focus-visible {
+  outline-color: var(--color-focus-ring);
+}

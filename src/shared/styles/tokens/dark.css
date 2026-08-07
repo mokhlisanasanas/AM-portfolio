@@ -1,0 +1,120 @@
+/*
+ * Dark Theme Tokens
+ *
+ * This file assigns dark-mode values to the semantic token contract.
+ * It should override semantic tokens only. Do not add primitive scales or
+ * component-specific tokens here.
+ */
+
+[data-theme="dark"] {
+  /*
+   * Canvas
+   *
+   * Deep page backgrounds with subtle elevation steps for readable dark-mode
+   * hierarchy and strong inverse support.
+   */
+  --color-canvas: var(--color-slate-950);
+  --color-canvas-subtle: var(--color-neutral-950);
+  --color-canvas-inverse: var(--color-neutral-0);
+  --color-canvas-inverted: var(--color-canvas-inverse);
+
+  /*
+   * Text
+   *
+   * High-contrast foreground values tuned for readability on dark surfaces.
+   * Muted text remains above typical contrast thresholds for supporting copy.
+   */
+  --color-text-primary: var(--color-slate-50);
+  --color-text-secondary: var(--color-slate-200);
+  --color-text-tertiary: var(--color-slate-300);
+  --color-text-muted: var(--color-slate-400);
+  --color-text-disabled: var(--color-slate-500);
+  --color-text-inverse: var(--color-neutral-950);
+  --color-text-on-inverse: var(--color-text-inverse);
+
+  /*
+   * Surface
+   *
+   * Layer values for panels and grouped content on a dark canvas. These keep
+   * separation visible without relying on heavy shadows.
+   */
+  --color-surface: var(--color-slate-900);
+  --color-surface-subtle: var(--color-slate-950);
+  --color-surface-muted: var(--color-slate-800);
+  --color-surface-strong: var(--color-slate-700);
+  --color-surface-inverse: var(--color-neutral-0);
+  --color-surface-inverted: var(--color-surface-inverse);
+
+  /*
+   * Border
+   *
+   * Neutral border values for dark-mode structure. Stronger borders support
+   * active and emphasized states without reducing readability.
+   */
+  --color-border-subtle: var(--color-slate-800);
+  --color-border: var(--color-slate-700);
+  --color-border-strong: var(--color-slate-500);
+  --color-border-inverse: var(--color-slate-200);
+
+  /*
+   * Brand
+   *
+   * Accessible blue interaction range for primary actions and brand moments on
+   * dark backgrounds.
+   */
+  --color-brand-subtle: var(--color-blue-950);
+  --color-brand-muted: var(--color-blue-900);
+  --color-brand: var(--color-blue-400);
+  --color-brand-strong: var(--color-blue-300);
+  --color-brand-contrast: var(--color-blue-950);
+
+  /*
+   * Accent
+   *
+   * Cyan support colors for secondary emphasis. Lighter steps keep text and
+   * controls legible in dark mode.
+   */
+  --color-accent-subtle: var(--color-cyan-950);
+  --color-accent-muted: var(--color-cyan-900);
+  --color-accent: var(--color-cyan-400);
+  --color-accent-strong: var(--color-cyan-300);
+  --color-accent-contrast: var(--color-cyan-950);
+
+  /*
+   * Status
+   *
+   * Dark-mode feedback colors. Subtle values provide tinted backgrounds while
+   * active values preserve readable contrast.
+   */
+  --color-success-subtle: var(--color-emerald-950);
+  --color-success-muted: var(--color-emerald-900);
+  --color-success: var(--color-emerald-400);
+  --color-success-strong: var(--color-emerald-300);
+  --color-success-contrast: var(--color-emerald-950);
+
+  --color-warning-subtle: var(--color-amber-950);
+  --color-warning-muted: var(--color-amber-900);
+  --color-warning: var(--color-amber-300);
+  --color-warning-strong: var(--color-amber-200);
+  --color-warning-contrast: var(--color-amber-950);
+
+  --color-danger-subtle: var(--color-red-950);
+  --color-danger-muted: var(--color-red-900);
+  --color-danger: var(--color-red-400);
+  --color-danger-strong: var(--color-red-300);
+  --color-danger-contrast: var(--color-red-950);
+
+  /*
+   * Interactive
+   *
+   * Dark-mode links, focus, selection, and overlay feedback. The focus ring is
+   * intentionally bright so keyboard navigation remains visible.
+   */
+  --color-link: var(--color-blue-300);
+  --color-link-hover: var(--color-blue-200);
+  --color-focus-ring: var(--color-blue-400);
+  --color-selection-background: var(--color-blue-900);
+  --color-selection-foreground: var(--color-blue-50);
+  --color-hover-overlay: rgb(248 250 252 / 0.06);
+  --color-active-overlay: rgb(248 250 252 / 0.1);
+}

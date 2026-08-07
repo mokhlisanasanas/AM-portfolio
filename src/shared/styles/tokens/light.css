@@ -1,0 +1,130 @@
+/*
+ * Light Theme Tokens
+ *
+ * This file assigns light-mode values to the semantic token contract.
+ * It should override semantic tokens only. Do not add primitive scales or
+ * component-specific tokens here.
+ */
+
+:root,
+[data-theme="light"] {
+  /*
+   * Canvas
+   *
+   * Bright page backgrounds with subtle neutral variation for quiet section
+   * contrast and strong inverse support.
+   */
+  --color-canvas: var(--color-neutral-0);
+  --color-canvas-subtle: var(--color-slate-50);
+  --color-canvas-inverse: var(--color-neutral-950);
+  --color-canvas-inverted: var(--color-canvas-inverse);
+
+  /*
+   * Text
+   *
+   * High-contrast foreground values tuned for readability on light surfaces.
+   * Primary text targets strong WCAG contrast, while muted text remains usable
+   * for secondary information.
+   */
+  --color-text-primary: var(--color-neutral-950);
+  --color-text-secondary: var(--color-slate-700);
+  --color-text-tertiary: var(--color-slate-600);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-text-inverse: var(--color-neutral-0);
+  --color-text-on-inverse: var(--color-text-inverse);
+
+  /*
+   * Surface
+   *
+   * Layer values for panels and grouped content on a light canvas. These keep
+   * the interface calm while still providing enough separation.
+   */
+  --color-surface: var(--color-neutral-0);
+  --color-surface-subtle: var(--color-slate-50);
+  --color-surface-muted: var(--color-slate-100);
+  --color-surface-strong: var(--color-slate-200);
+  --color-surface-inverse: var(--color-neutral-950);
+  --color-surface-inverted: var(--color-surface-inverse);
+
+  /*
+   * Border
+   *
+   * Neutral border values for light-mode structure. Subtle borders divide
+   * quiet areas; strong borders support active or emphasized states.
+   */
+  --color-border-subtle: var(--color-slate-200);
+  --color-border: var(--color-slate-300);
+  --color-border-strong: var(--color-slate-400);
+  --color-border-inverse: var(--color-slate-700);
+
+  /*
+   * Brand
+   *
+   * Accessible blue interaction range for primary actions and portfolio brand
+   * moments on light backgrounds.
+   */
+  --color-brand-subtle: var(--color-blue-50);
+  --color-brand-muted: var(--color-blue-100);
+  --color-brand: var(--color-blue-700);
+  --color-brand-strong: var(--color-blue-800);
+  --color-brand-contrast: var(--color-neutral-0);
+
+  /*
+   * Accent
+   *
+   * Cyan support colors for secondary emphasis. Stronger steps are used for
+   * text or controls so contrast remains dependable in light mode.
+   */
+  --color-accent-subtle: var(--color-cyan-50);
+  --color-accent-muted: var(--color-cyan-100);
+  --color-accent: var(--color-cyan-700);
+  --color-accent-strong: var(--color-cyan-800);
+  --color-accent-contrast: var(--color-neutral-0);
+
+  /*
+   * Status
+   *
+   * Light-mode feedback colors. Text/control colors use darker palette steps
+   * than their background tints to preserve readable contrast.
+   */
+  --color-success-subtle: var(--color-emerald-50);
+  --color-success-muted: var(--color-emerald-100);
+  --color-success: var(--color-emerald-700);
+  --color-success-strong: var(--color-emerald-800);
+  --color-success-contrast: var(--color-neutral-0);
+
+  --color-warning-subtle: var(--color-amber-50);
+  --color-warning-muted: var(--color-amber-100);
+  --color-warning: var(--color-amber-700);
+  --color-warning-strong: var(--color-amber-800);
+  --color-warning-contrast: var(--color-neutral-950);
+
+  --color-danger-subtle: var(--color-red-50);
+  --color-danger-muted: var(--color-red-100);
+  --color-danger: var(--color-red-700);
+  --color-danger-strong: var(--color-red-800);
+  --color-danger-contrast: var(--color-neutral-0);
+
+  /*
+   * Interactive
+   *
+   * Light-mode links, focus, selection, and overlay feedback. The focus ring is
+   * intentionally vivid so keyboard navigation remains visible.
+   */
+  --color-link: var(--color-blue-700);
+  --color-link-hover: var(--color-blue-800);
+  --color-focus-ring: var(--color-blue-600);
+  --color-selection-background: var(--color-blue-100);
+  --color-selection-foreground: var(--color-blue-950);
+  --color-hover-overlay: var(--color-slate-alpha-4);
+  --color-active-overlay: var(--color-slate-alpha-8);
+
+  /*
+   * Non-color Roles
+   *
+   * Typography, layout, shape, elevation, and motion roles are inherited from
+   * semantic.css because light mode does not need theme-specific overrides for
+   * those values. Keeping them in one layer avoids duplicated maintenance.
+   */
+}

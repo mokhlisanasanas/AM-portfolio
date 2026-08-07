@@ -1,0 +1,200 @@
+/*
+ * Semantic Design Tokens
+ *
+ * This file maps primitive values to product meaning.
+ * Components should consume these tokens instead of raw primitives whenever
+ * they need intent such as surface, text, border, focus, or status.
+ *
+ * Do not place component-specific tokens here.
+ * Do not place dark-mode-only overrides here.
+ */
+
+:root {
+  /*
+   * Canvas
+   *
+   * App-level page colors. These are the default semantic meanings for the
+   * document canvas and primary content color.
+   */
+  --color-canvas: var(--color-neutral-0);
+  --color-canvas-subtle: var(--color-neutral-50);
+  --color-canvas-inverse: var(--color-neutral-950);
+  --color-canvas-inverted: var(--color-canvas-inverse);
+
+  /*
+   * Text
+   *
+   * Intent-based text colors. Use stronger tokens for primary content and
+   * softer tokens for supporting text while preserving WCAG-friendly contrast.
+   */
+  --color-text-primary: var(--color-neutral-950);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-tertiary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-text-inverse: var(--color-neutral-0);
+  --color-text-on-inverse: var(--color-text-inverse);
+
+  /*
+   * Surface
+   *
+   * Layered backgrounds for grouped content. Keep these generic so cards,
+   * panels, navigation, and sections can all map to them later.
+   */
+  --color-surface: var(--color-neutral-0);
+  --color-surface-subtle: var(--color-neutral-50);
+  --color-surface-muted: var(--color-neutral-100);
+  --color-surface-strong: var(--color-neutral-200);
+  --color-surface-inverse: var(--color-neutral-950);
+  --color-surface-inverted: var(--color-surface-inverse);
+
+  /*
+   * Border
+   *
+   * Intent-based border colors for layout division, controls, and emphasized
+   * states. Pair with primitive border widths in component styles.
+   */
+  --color-border-subtle: var(--color-neutral-200);
+  --color-border: var(--color-neutral-300);
+  --color-border-strong: var(--color-neutral-400);
+  --color-border-inverse: var(--color-neutral-700);
+
+  /*
+   * Brand
+   *
+   * Brand-neutral interaction colors for portfolio identity and primary calls
+   * to action. These remain semantic so the palette can evolve later.
+   */
+  --color-brand-subtle: var(--color-blue-50);
+  --color-brand-muted: var(--color-blue-100);
+  --color-brand: var(--color-blue-600);
+  --color-brand-strong: var(--color-blue-700);
+  --color-brand-contrast: var(--color-neutral-0);
+
+  /*
+   * Accent
+   *
+   * Secondary highlight colors for decorative emphasis, selected states, and
+   * small moments of visual interest.
+   */
+  --color-accent-subtle: var(--color-cyan-50);
+  --color-accent-muted: var(--color-cyan-100);
+  --color-accent: var(--color-cyan-600);
+  --color-accent-strong: var(--color-cyan-700);
+  --color-accent-contrast: var(--color-neutral-0);
+
+  /*
+   * Status
+   *
+   * State colors for success, warning, and destructive feedback. Use these for
+   * meaning, not decoration, and validate foreground/background pairs.
+   */
+  --color-success-subtle: var(--color-emerald-50);
+  --color-success-muted: var(--color-emerald-100);
+  --color-success: var(--color-emerald-600);
+  --color-success-strong: var(--color-emerald-700);
+  --color-success-contrast: var(--color-neutral-0);
+
+  --color-warning-subtle: var(--color-amber-50);
+  --color-warning-muted: var(--color-amber-100);
+  --color-warning: var(--color-amber-600);
+  --color-warning-strong: var(--color-amber-700);
+  --color-warning-contrast: var(--color-neutral-950);
+
+  --color-danger-subtle: var(--color-red-50);
+  --color-danger-muted: var(--color-red-100);
+  --color-danger: var(--color-red-600);
+  --color-danger-strong: var(--color-red-700);
+  --color-danger-contrast: var(--color-neutral-0);
+
+  /*
+   * Interactive
+   *
+   * Generic interaction colors for links, focus rings, selection, hover, and
+   * active states. Component tokens can refine these later.
+   */
+  --color-link: var(--color-blue-700);
+  --color-link-hover: var(--color-blue-800);
+  --color-focus-ring: var(--color-blue-600);
+  --color-selection-background: var(--color-blue-100);
+  --color-selection-foreground: var(--color-blue-950);
+  --color-hover-overlay: var(--color-neutral-alpha-4);
+  --color-active-overlay: var(--color-neutral-alpha-8);
+
+  /*
+   * Typography Roles
+   *
+   * Semantic type defaults for app copy. These point to primitive typography
+   * values and can be consumed by base styles or future Tailwind theme tokens.
+   */
+  --typography-font-body: var(--font-family-sans);
+  --typography-font-heading: var(--font-family-sans);
+  --typography-font-code: var(--font-family-mono);
+
+  --typography-size-body-sm: var(--font-size-sm);
+  --typography-size-body: var(--font-size-md);
+  --typography-size-body-lg: var(--font-size-lg);
+  --typography-size-heading-sm: var(--font-size-xl);
+  --typography-size-heading-md: var(--font-size-2xl);
+  --typography-size-heading-lg: var(--font-size-4xl);
+  --typography-size-heading-xl: var(--font-size-6xl);
+
+  --typography-line-body: var(--line-height-normal);
+  --typography-line-heading: var(--line-height-tight);
+  --typography-line-code: var(--line-height-normal);
+
+  --typography-weight-body: var(--font-weight-regular);
+  --typography-weight-heading: var(--font-weight-bold);
+  --typography-weight-emphasis: var(--font-weight-semibold);
+
+  /*
+   * Layout
+   *
+   * App-level layout meanings for readable content and page containers. These
+   * stay generic and do not describe specific sections.
+   */
+  --layout-container-page: var(--container-page);
+  --layout-container-readable: var(--container-readable);
+  --layout-container-padding-sm: var(--container-padding-sm);
+  --layout-container-padding-md: var(--container-padding-md);
+  --layout-container-padding-lg: var(--container-padding-lg);
+  --layout-section-gap-sm: var(--space-12);
+  --layout-section-gap-md: var(--space-16);
+  --layout-section-gap-lg: var(--space-24);
+
+  /*
+   * Shape
+   *
+   * Semantic shape values used as app defaults. Component-level tokens can map
+   * these into exact control or surface radii later.
+   */
+  --shape-radius-subtle: var(--radius-sm);
+  --shape-radius-default: var(--radius-md);
+  --shape-radius-large: var(--radius-lg);
+  --shape-radius-round: var(--radius-full);
+
+  /*
+   * Elevation
+   *
+   * Meaningful elevation levels. Use these instead of primitive shadow names
+   * when a surface relationship is being described.
+   */
+  --elevation-flat: var(--shadow-none);
+  --elevation-raised: var(--shadow-sm);
+  --elevation-floating: var(--shadow-lg);
+  --elevation-overlay: var(--shadow-2xl);
+
+  /*
+   * Motion Roles
+   *
+   * Intent-based motion timings for consistent interaction feedback. These
+   * should still be paired with reduced-motion utilities.
+   */
+  --motion-duration-feedback: var(--duration-fast);
+  --motion-duration-transition: var(--duration-normal);
+  --motion-duration-reveal: var(--duration-slow);
+  --motion-duration-page: var(--duration-slower);
+  --motion-ease-feedback: var(--ease-standard);
+  --motion-ease-enter: var(--ease-entrance);
+  --motion-ease-exit: var(--ease-exit);
+}
