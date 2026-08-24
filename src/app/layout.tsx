@@ -4,11 +4,9 @@ import type { Metadata } from "next";
 import { AppShell } from "@/components/Layout/AppShell";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ThemeScript } from "@/components/theme/ThemeScript";
+import { getAbsoluteUrl, siteUrl } from "@/config/site/siteUrl";
 import "./globals.css";
 
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-).replace(/\/$/, "");
 const siteName = "Anas Mokhlis";
 const siteTitle = "Anas Mokhlis - Front-End Developer";
 const siteDescription =
@@ -22,7 +20,7 @@ const hasOgImage = existsSync(
 const socialImages = hasOgImage
   ? [
       {
-        url: futureOgImagePath,
+        url: getAbsoluteUrl(futureOgImagePath),
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -53,11 +51,11 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   alternates: {
-    canonical: "/",
+    canonical: getAbsoluteUrl("/"),
   },
   openGraph: {
     type: "website",
-    url: "/",
+    url: getAbsoluteUrl("/"),
     siteName,
     title: siteTitle,
     description: siteDescription,
