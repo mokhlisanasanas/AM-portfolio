@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { mainNavigation, type NavigationItem } from "@/config/navigation";
+import { useActiveNavigationItem } from "./useActiveNavigationItem";
 
 interface DesktopNavigationProps {
   readonly className?: string;
@@ -13,6 +17,8 @@ export function DesktopNavigation({
   className = "",
 }: DesktopNavigationProps) {
   const navigationItems: readonly NavigationItem[] = mainNavigation;
+  const activeId = useActiveNavigationItem();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <nav
@@ -23,25 +29,53 @@ export function DesktopNavigation({
         {navigationItems.map((item) => {
           const label = getNavigationLabel(item);
           const linkClassName = [
-            "focus-ring inline-flex min-h-10 items-center rounded-[var(--shape-radius-subtle)] px-3",
+            "focus-ring relative inline-flex min-h-10 items-center rounded-[var(--shape-radius-subtle)] px-3",
             "text-sm font-medium text-[var(--component-navigation-foreground)]",
             "hover:bg-[var(--color-hover-overlay)] hover:text-[var(--component-navigation-link-active)]",
           ].join(" ");
+          const isActive = item.id === activeId;
 
           return (
-            <li key={item.id}>
+            <li key={item.id} className="relative">
               {item.external ? (
                 <a
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={linkClassName}
+                  aria-current={isActive ? "location" : undefined}
                 >
                   {label}
+                  {isActive ? (
+                    <motion.span
+                      layoutId="navbar-active-indicator"
+                      className="absolute inset-x-3 bottom-1 h-0.5 rounded-[var(--radius-full)] bg-[var(--color-accent)]"
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { duration: 0.24, ease: "easeOut" }
+                      }
+                    />
+                  ) : null}
                 </a>
               ) : (
-                <Link href={item.href} className={linkClassName}>
+                <Link
+                  href={item.href}
+                  className={linkClassName}
+                  aria-current={isActive ? "location" : undefined}
+                >
                   {label}
+                  {isActive ? (
+                    <motion.span
+                      layoutId="navbar-active-indicator"
+                      className="absolute inset-x-3 bottom-1 h-0.5 rounded-[var(--radius-full)] bg-[var(--color-accent)]"
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { duration: 0.24, ease: "easeOut" }
+                      }
+                    />
+                  ) : null}
                 </Link>
               )}
             </li>

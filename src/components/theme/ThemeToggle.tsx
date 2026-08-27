@@ -1,81 +1,70 @@
 "use client";
 
-import { useId } from "react";
-import { THEME_OPTIONS, type ThemePreference } from "@/config/theme";
+import { Moon, Sun } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "./useTheme";
+import type { ThemePreference } from "@/config/theme";
 
 interface ThemeToggleProps {
   readonly legend?: string;
   readonly className?: string;
+  readonly showLabel?: boolean;
+}
+
+function getNextTheme(themePreference: ThemePreference): ThemePreference {
+  return themePreference === "dark" ? "light" : "dark";
 }
 
 export function ThemeToggle({
   legend = "Theme",
   className = "",
+  showLabel = false,
 }: ThemeToggleProps) {
-  const groupName = useId();
+  const shouldReduceMotion = useReducedMotion();
   const { themePreference, isHydrated, setThemePreference } = useTheme();
-  const selectedThemePreference: ThemePreference = isHydrated
-    ? themePreference
-    : "system";
+  const currentTheme: ThemePreference = isHydrated ? themePreference : "dark";
+  const nextTheme = getNextTheme(currentTheme);
+  const label =
+    currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+  const visibleLabel = currentTheme === "dark" ? "Dark mode" : "Light mode";
+  const Icon = currentTheme === "dark" ? Sun : Moon;
 
   return (
-    <fieldset
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
       className={[
-        "inline-flex max-w-full flex-col gap-2",
-        "text-[length:var(--typography-size-body-sm)] text-[var(--color-text-secondary)]",
+        "focus-ring inline-flex min-h-11 min-w-11 items-center justify-center gap-3",
+        "rounded-[var(--component-button-radius)] border border-[var(--component-button-secondary-border)]",
+        "bg-[var(--component-button-secondary-background)] text-[var(--component-button-secondary-foreground)]",
+        "px-3 text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)]",
+        "motion-transition hover:-translate-y-px hover:bg-[var(--color-hover-overlay)]",
+        showLabel ? "w-full justify-start" : "aspect-square",
         className,
       ].join(" ")}
+      onClick={() => {
+        setThemePreference(nextTheme);
+      }}
     >
-      <legend className="font-medium text-[var(--color-text-primary)]">
-        {legend}
-      </legend>
-
-      <div
-        className={[
-          "inline-grid max-w-full grid-cols-3 gap-1 rounded-[var(--component-button-radius)]",
-          "border border-[var(--component-button-secondary-border)] bg-[var(--color-surface-muted)] p-1",
-        ].join(" ")}
-      >
-        {THEME_OPTIONS.map((option) => {
-          const isSelected = selectedThemePreference === option.value;
-
-          return (
-            <label
-              key={option.value}
-              className={[
-                "relative inline-flex min-h-10 cursor-pointer items-center justify-center",
-                "rounded-[var(--shape-radius-subtle)] px-3 py-2 text-center font-medium",
-                "text-[var(--color-text-secondary)]",
-                isSelected
-                  ? "bg-[var(--component-button-primary-background)] text-[var(--component-button-primary-foreground)]"
-                  : "hover:bg-[var(--color-hover-overlay)]",
-              ].join(" ")}
-            >
-              <input
-                type="radio"
-                name={groupName}
-                value={option.value}
-                checked={isSelected}
-                aria-label={option.ariaLabel}
-                className="peer sr-only"
-                onChange={() => {
-                  setThemePreference(option.value);
-                }}
-              />
-              <span
-                className={[
-                  "rounded-[var(--shape-radius-subtle)]",
-                  "peer-focus-visible:outline peer-focus-visible:outline-2",
-                  "peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-focus-ring)]",
-                ].join(" ")}
-              >
-                {option.label}
-              </span>
-            </label>
-          );
-        })}
-      </div>
-    </fieldset>
+      <span className="sr-only">{legend}</span>
+      {shouldReduceMotion ? (
+        <span aria-hidden="true" className="inline-flex">
+          <Icon size={18} strokeWidth={2} />
+        </span>
+      ) : (
+        <motion.span
+          key={currentTheme}
+          aria-hidden="true"
+          className="inline-flex"
+          initial={{ opacity: 0, rotate: -12, scale: 0.95 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+        >
+          <Icon size={18} strokeWidth={2} />
+        </motion.span>
+      )}
+      {showLabel ? <span>{visibleLabel}</span> : null}
+    </button>
   );
 }

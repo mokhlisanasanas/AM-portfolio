@@ -4,12 +4,7 @@ export const mainNavigation = [
   {
     id: "home",
     translationKey: "nav.home",
-    href: "/",
-  },
-  {
-    id: "about",
-    translationKey: "nav.about",
-    href: "/#about",
+    href: "/#home",
   },
   {
     id: "projects",
@@ -17,9 +12,19 @@ export const mainNavigation = [
     href: "/#projects",
   },
   {
+    id: "experience",
+    translationKey: "nav.experience",
+    href: "/#experience",
+  },
+  {
     id: "skills",
     translationKey: "nav.skills",
     href: "/#skills",
+  },
+  {
+    id: "about",
+    translationKey: "nav.about",
+    href: "/#about",
   },
   {
     id: "contact",

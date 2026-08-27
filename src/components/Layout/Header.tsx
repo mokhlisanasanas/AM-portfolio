@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import { Container } from "@/shared/components/Container";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { BrandLogo } from "./BrandLogo";
 import { DesktopNavigation } from "./DesktopNavigation";
 import { MobileNavigation } from "./MobileNavigation";
 
@@ -10,30 +9,22 @@ export function Header() {
     <header
       className={[
         "sticky top-0 z-[var(--z-index-sticky)]",
+        "relative",
         "border-b border-[var(--component-navigation-border)]",
         "bg-[var(--component-navigation-background)]",
       ].join(" ")}
     >
       <Container className="py-3">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div className="flex min-w-0 items-center justify-between gap-3">
-            <Link
-              href="/"
-              aria-label={`${siteConfig.name} home`}
-              className={[
-                "focus-ring inline-flex min-h-10 min-w-0 items-center rounded-[var(--shape-radius-subtle)]",
-                "text-base font-semibold text-[var(--color-text-primary)]",
-              ].join(" ")}
-            >
-              <span className="truncate">{siteConfig.shortTitle}</span>
-            </Link>
+        <div className="flex min-w-0 items-center justify-between gap-4">
+          <BrandLogo />
 
-            <MobileNavigation />
+          <div className="hidden min-w-0 flex-1 justify-center md:flex">
+            <DesktopNavigation />
           </div>
 
-          <DesktopNavigation />
+          <MobileNavigation />
 
-          <div className="flex min-w-0 items-center justify-start gap-3 md:justify-end">
+          <div className="hidden min-w-0 items-center justify-end gap-3 md:flex">
             {/* Future LanguageSwitcher belongs beside the theme controls. */}
             <ThemeToggle legend="Theme" />
           </div>
