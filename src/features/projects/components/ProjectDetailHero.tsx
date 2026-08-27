@@ -1,0 +1,48 @@
+import { Container } from "@/shared/components/Container";
+import { ExternalLink, Heading, Text } from "@/shared/components/ui";
+import { ProjectMeta } from "./ProjectMeta";
+import { ProjectTechList } from "./ProjectTechList";
+import type { ProjectCaseStudy } from "../data/types";
+
+interface ProjectDetailHeroProps {
+  readonly project: ProjectCaseStudy;
+}
+
+export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
+  return (
+    <Container>
+      <div className="grid gap-10 border-b border-[var(--component-divider-color)] pb-12 lg:grid-cols-12 lg:items-end lg:pb-16">
+        <div className="space-y-8 lg:col-span-8">
+          <div className="space-y-5">
+            <p className="text-[length:var(--font-size-xs)] font-[var(--typography-weight-emphasis)] uppercase tracking-[var(--letter-spacing-wider)] text-[var(--color-text-muted)]">
+              Project Case Study
+            </p>
+            <Heading level={1} size="page" className="max-w-4xl">
+              {project.title}
+            </Heading>
+            <Text size="lg" className="max-w-2xl">
+              {project.summary}
+            </Text>
+          </div>
+
+          <ProjectMeta role={project.role} company={project.company} />
+        </div>
+
+        <div className="space-y-5 lg:col-span-4">
+          <p className="text-[length:var(--font-size-xs)] font-[var(--typography-weight-emphasis)] uppercase tracking-[var(--letter-spacing-wider)] text-[var(--color-text-muted)]">
+            Stack
+          </p>
+          <ProjectTechList
+            techStack={project.technologies}
+            projectTitle={project.title}
+          />
+          {project.officialUrl ? (
+            <ExternalLink href={project.officialUrl}>
+              Visit inwi.ma ↗
+            </ExternalLink>
+          ) : null}
+        </div>
+      </div>
+    </Container>
+  );
+}

@@ -28,12 +28,6 @@ export const contactContent: ContactContent = {
     "For frontend opportunities, React and Next.js projects, or professional collaboration, feel free to get in touch.",
   actions: [
     {
-      id: "email",
-      label: "Email Me",
-      href: "mailto:anas.mokhlis.me@gmail.com",
-      variant: "primary",
-    },
-    {
       id: "cv",
       label: "Download CV",
       href: "/cv/CV-Anas-Mokhlis.pdf",

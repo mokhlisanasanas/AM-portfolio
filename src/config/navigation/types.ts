@@ -1,6 +1,7 @@
 export type NavigationItemId =
   | "home"
   | "about"
+  | "experience"
   | "projects"
   | "skills"
   | "contact";
@@ -8,6 +9,7 @@ export type NavigationItemId =
 export type NavigationTranslationKey =
   | "nav.home"
   | "nav.about"
+  | "nav.experience"
   | "nav.projects"
   | "nav.skills"
   | "nav.contact";

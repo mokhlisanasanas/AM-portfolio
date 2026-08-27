@@ -20,14 +20,22 @@ export function SkillList({
       tags={skills}
       label={label}
       className={[
-        isPrimary ? "gap-x-5 gap-y-3" : "gap-x-4 gap-y-2",
-        "[&_span]:border-transparent [&_span]:bg-transparent [&_span]:px-0 [&_span]:py-0",
+        isPrimary ? "gap-2.5" : "gap-2",
+        "[&_span]:motion-transition",
+        "[&_span]:rounded-[var(--shape-radius-subtle)]",
+        "[&_span]:border-[var(--component-badge-border)]",
+        "[&_span]:bg-transparent",
+        "[&_span]:text-[var(--color-text-secondary)]",
+        "[&_span]:hover:-translate-y-px",
+        "[&_span]:hover:border-[var(--color-border)]",
+        "[&_span]:hover:bg-[var(--color-hover-overlay)]",
+        "[&_span]:hover:text-[var(--color-text-primary)]",
         isPrimary
-          ? "[&_span]:text-[length:var(--typography-size-body)] [&_span]:font-[var(--typography-weight-emphasis)]"
-          : "[&_span]:text-[length:var(--typography-size-body-sm)] [&_span]:font-[var(--typography-weight-body)]",
+          ? "[&_span]:px-3 [&_span]:py-1.5 [&_span]:text-[length:var(--typography-size-body)] [&_span]:font-[var(--typography-weight-emphasis)]"
+          : "[&_span]:px-2.5 [&_span]:py-1 [&_span]:text-[length:var(--typography-size-body-sm)] [&_span]:font-[var(--typography-weight-body)]",
         isSecondary
-          ? "[&_span]:text-[var(--color-text-muted)]"
-          : "[&_span]:text-[var(--color-text-secondary)]",
+          ? "[&_span]:border-transparent [&_span]:text-[var(--color-text-muted)]"
+          : "",
       ].join(" ")}
     />
   );

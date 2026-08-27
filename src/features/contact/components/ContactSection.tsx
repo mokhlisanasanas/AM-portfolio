@@ -7,7 +7,7 @@ import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
 import { contactContent } from "../data/contactLinks";
-import { ContactActions } from "./ContactActions";
+import { ContactForm } from "./ContactForm";
 import { ContactLinkList } from "./ContactLinkList";
 
 const contactTitleId = "contact-title";
@@ -27,27 +27,20 @@ export function ContactSection() {
             duration={0.6}
             staggerDelay={0.1}
           >
-            <div>
+            <div className="space-y-8">
               <SectionHeader
                 id={contactTitleId}
                 eyebrow={contactContent.eyebrow}
                 title={contactContent.title}
                 description={contactContent.description}
               />
+
+              <ContactLinkList links={contactContent.links} />
             </div>
 
-            <MotionStagger
-              className="space-y-6"
-              duration={0.6}
-              staggerDelay={0.1}
-            >
-              <div>
-                <ContactActions actions={contactContent.actions} />
-              </div>
-              <div>
-                <ContactLinkList links={contactContent.links} />
-              </div>
-            </MotionStagger>
+            <div>
+              <ContactForm />
+            </div>
           </MotionStagger>
         </Container>
       </Section>

@@ -13,7 +13,6 @@ import {
   THEME_ATTRIBUTE,
   THEME_CHANGE_EVENT,
   THEME_COLOR_SCHEME_PROPERTY,
-  THEME_MEDIA_QUERY,
   THEME_STORAGE_KEY,
   isThemePreference,
   readThemePreference,
@@ -34,8 +33,6 @@ export interface ThemeContextValue {
 }
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null);
-
-const FALLBACK_RESOLVED_THEME: ResolvedTheme = "light";
 
 let themePreferenceFallback = DEFAULT_THEME_PREFERENCE;
 
@@ -83,40 +80,6 @@ function subscribeToThemePreference(onStoreChange: () => void) {
   };
 }
 
-function getSystemThemeSnapshot(): ResolvedTheme {
-  if (typeof window === "undefined") {
-    return FALLBACK_RESOLVED_THEME;
-  }
-
-  try {
-    return window.matchMedia(THEME_MEDIA_QUERY).matches ? "dark" : "light";
-  } catch {
-    return FALLBACK_RESOLVED_THEME;
-  }
-}
-
-function getServerSystemThemeSnapshot(): ResolvedTheme {
-  return FALLBACK_RESOLVED_THEME;
-}
-
-function subscribeToSystemTheme(onStoreChange: () => void) {
-  if (typeof window === "undefined") {
-    return () => {};
-  }
-
-  try {
-    const mediaQuery = window.matchMedia(THEME_MEDIA_QUERY);
-
-    mediaQuery.addEventListener("change", onStoreChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", onStoreChange);
-    };
-  } catch {
-    return () => {};
-  }
-}
-
 function getHydratedSnapshot() {
   return true;
 }
@@ -127,13 +90,6 @@ function getServerHydratedSnapshot() {
 
 function subscribeToHydration() {
   return () => {};
-}
-
-function resolveThemePreference(
-  themePreference: ThemePreference,
-  systemTheme: ResolvedTheme,
-): ResolvedTheme {
-  return themePreference === "system" ? systemTheme : themePreference;
 }
 
 function applyResolvedTheme(resolvedTheme: ResolvedTheme): void {
@@ -151,27 +107,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     getThemePreferenceSnapshot,
     getServerThemePreferenceSnapshot,
   );
-  const subscribeToActiveSystemTheme = useCallback(
-    (onStoreChange: () => void) => {
-      if (themePreference !== "system") {
-        return () => {};
-      }
-
-      return subscribeToSystemTheme(onStoreChange);
-    },
-    [themePreference],
-  );
-  const systemTheme = useSyncExternalStore(
-    subscribeToActiveSystemTheme,
-    getSystemThemeSnapshot,
-    getServerSystemThemeSnapshot,
-  );
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
     getHydratedSnapshot,
     getServerHydratedSnapshot,
   );
-  const resolvedTheme = resolveThemePreference(themePreference, systemTheme);
+  const resolvedTheme: ResolvedTheme = themePreference;
 
   useEffect(() => {
     applyResolvedTheme(resolvedTheme);
@@ -186,9 +127,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
       }
 
-      applyResolvedTheme(
-        resolveThemePreference(nextThemePreference, getSystemThemeSnapshot()),
-      );
+      applyResolvedTheme(nextThemePreference);
     },
     [],
   );

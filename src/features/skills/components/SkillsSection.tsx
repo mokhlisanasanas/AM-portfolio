@@ -31,7 +31,7 @@ export function SkillsSection() {
               />
             </div>
 
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-14">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-12">
               {skillGroups.map((group) => (
                 <SkillGroup key={group.id} group={group} />
               ))}

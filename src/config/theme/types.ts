@@ -1,6 +1,6 @@
-export type ThemePreference = "light" | "dark" | "system";
+export type ThemePreference = "light" | "dark";
 
-export type ResolvedTheme = Exclude<ThemePreference, "system">;
+export type ResolvedTheme = ThemePreference;
 
 export interface ThemeOption {
   readonly value: ThemePreference;
