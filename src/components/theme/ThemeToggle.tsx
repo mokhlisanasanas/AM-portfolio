@@ -2,6 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useTheme } from "./useTheme";
 import type { ThemePreference } from "@/config/theme";
 
@@ -16,17 +17,22 @@ function getNextTheme(themePreference: ThemePreference): ThemePreference {
 }
 
 export function ThemeToggle({
-  legend = "Theme",
+  legend,
   className = "",
   showLabel = false,
 }: ThemeToggleProps) {
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("Common");
   const { themePreference, isHydrated, setThemePreference } = useTheme();
   const currentTheme: ThemePreference = isHydrated ? themePreference : "dark";
   const nextTheme = getNextTheme(currentTheme);
   const label =
-    currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode";
-  const visibleLabel = currentTheme === "dark" ? "Dark mode" : "Light mode";
+    currentTheme === "dark"
+      ? t("switchToLightMode")
+      : t("switchToDarkMode");
+  const visibleLabel =
+    currentTheme === "dark" ? t("darkMode") : t("lightMode");
+  const legendLabel = legend ?? t("theme");
   const Icon = currentTheme === "dark" ? Sun : Moon;
 
   return (
@@ -47,7 +53,7 @@ export function ThemeToggle({
         setThemePreference(nextTheme);
       }}
     >
-      <span className="sr-only">{legend}</span>
+      <span className="sr-only">{legendLabel}</span>
       {shouldReduceMotion ? (
         <span aria-hidden="true" className="inline-flex">
           <Icon size={18} strokeWidth={2} />

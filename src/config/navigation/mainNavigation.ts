@@ -3,32 +3,32 @@ import type { NavigationItem } from "./types";
 export const mainNavigation = [
   {
     id: "home",
-    translationKey: "nav.home",
+    translationKey: "home",
     href: "/#home",
   },
   {
     id: "projects",
-    translationKey: "nav.projects",
+    translationKey: "projects",
     href: "/#projects",
   },
   {
     id: "experience",
-    translationKey: "nav.experience",
+    translationKey: "experience",
     href: "/#experience",
   },
   {
     id: "skills",
-    translationKey: "nav.skills",
+    translationKey: "skills",
     href: "/#skills",
   },
   {
     id: "about",
-    translationKey: "nav.about",
+    translationKey: "about",
     href: "/#about",
   },
   {
     id: "contact",
-    translationKey: "nav.contact",
+    translationKey: "contact",
     href: "/#contact",
   },
 ] as const satisfies readonly NavigationItem[];

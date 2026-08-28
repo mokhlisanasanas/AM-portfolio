@@ -2,12 +2,20 @@ import type { HeroIdentityPanelContent } from "../data/heroContent";
 
 interface HeroIdentityPanelProps {
   readonly content: HeroIdentityPanelContent;
+  readonly ariaLabel: string;
+  readonly stackTitle: string;
+  readonly focusTitle: string;
 }
 
-export function HeroIdentityPanel({ content }: HeroIdentityPanelProps) {
+export function HeroIdentityPanel({
+  content,
+  ariaLabel,
+  stackTitle,
+  focusTitle,
+}: HeroIdentityPanelProps) {
   return (
     <aside
-      aria-label="Professional identity"
+      aria-label={ariaLabel}
       className={[
         "rounded-[var(--component-card-radius)]",
         "bg-[var(--color-surface-muted)] p-5 text-[var(--color-text-primary)] md:p-6",
@@ -38,8 +46,8 @@ export function HeroIdentityPanel({ content }: HeroIdentityPanelProps) {
             </dd>
           </div>
 
-          <PanelList title="Current stack" items={content.stack} />
-          <PanelList title="Focus" items={content.focus} />
+          <PanelList title={stackTitle} items={content.stack} />
+          <PanelList title={focusTitle} items={content.focus} />
         </dl>
       </div>
     </aside>

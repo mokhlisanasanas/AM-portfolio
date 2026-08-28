@@ -2,13 +2,17 @@ import type { AboutBackgroundPoint } from "../data/aboutContent";
 
 interface AboutBackgroundListProps {
   readonly points: readonly AboutBackgroundPoint[];
+  readonly title: string;
 }
 
-export function AboutBackgroundList({ points }: AboutBackgroundListProps) {
+export function AboutBackgroundList({
+  points,
+  title,
+}: AboutBackgroundListProps) {
   return (
     <div className="space-y-4">
       <h3 className="text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-primary)]">
-        Background
+        {title}
       </h3>
       <dl className="space-y-4">
         {points.map((point) => (

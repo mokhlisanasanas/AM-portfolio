@@ -2,13 +2,14 @@ import { TagList } from "@/shared/components/ui";
 
 interface HeroHighlightsProps {
   readonly highlights: readonly string[];
+  readonly label: string;
 }
 
-export function HeroHighlights({ highlights }: HeroHighlightsProps) {
+export function HeroHighlights({ highlights, label }: HeroHighlightsProps) {
   return (
     <TagList
       tags={highlights}
-      label="Frontend specializations"
+      label={label}
       className={[
         "max-w-3xl gap-x-4 gap-y-2",
         "[&_span]:border-transparent [&_span]:bg-transparent [&_span]:px-0 [&_span]:py-0",

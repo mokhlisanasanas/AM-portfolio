@@ -6,12 +6,21 @@ import { Container } from "@/shared/components/Container";
 import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
+import { getTranslations } from "next-intl/server";
 import { experienceItems } from "../data/experienceItems";
 import { ExperienceEntry } from "./ExperienceEntry";
 
 const experienceTitleId = "experience-title";
 
-export function ExperienceSection() {
+export async function ExperienceSection() {
+  const t = await getTranslations("Experience");
+  const localizedExperienceItems = experienceItems.map((experience) => ({
+    ...experience,
+    role: t(`items.${experience.id}.role`),
+    period: t(`items.${experience.id}.period`),
+    description: t(`items.${experience.id}.description`),
+  }));
+
   return (
     <BackgroundSurface variant="canvas">
       <BackgroundBoundary position="top" />
@@ -25,19 +34,26 @@ export function ExperienceSection() {
             <div>
               <SectionHeader
                 id={experienceTitleId}
-                eyebrow="Experience"
-                title="Professional Experience"
-                description="Selected professional experience across modern frontend development, web platforms and mobile applications."
+                eyebrow={t("eyebrow")}
+                title={t("title")}
+                description={t("description")}
               />
             </div>
 
             <div>
               <ol className="space-y-7 lg:space-y-9">
-                {experienceItems.map((experience, index) => (
+                {localizedExperienceItems.map((experience, index) => (
                   <li key={experience.id}>
                     <ExperienceEntry
                       experience={experience}
                       current={index === 0}
+                      labels={{
+                        role: t("labels.role"),
+                        selectedProjects: t("labels.selectedProjects"),
+                        technologies: t("labels.technologies", {
+                          company: experience.company,
+                        }),
+                      }}
                     />
                   </li>
                 ))}

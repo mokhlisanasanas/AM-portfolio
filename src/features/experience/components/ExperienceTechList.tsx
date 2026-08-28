@@ -2,17 +2,17 @@ import { TagList } from "@/shared/components/ui";
 
 interface ExperienceTechListProps {
   readonly technologies: readonly string[];
-  readonly company: string;
+  readonly label: string;
 }
 
 export function ExperienceTechList({
   technologies,
-  company,
+  label,
 }: ExperienceTechListProps) {
   return (
     <TagList
       tags={technologies}
-      label={`${company} technologies`}
+      label={label}
       className={[
         "gap-x-4 gap-y-2",
         "[&_span]:border-transparent [&_span]:bg-transparent [&_span]:px-0 [&_span]:py-0",

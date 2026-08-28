@@ -1,13 +1,16 @@
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 import { mainNavigation, type NavigationItem } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { isAppLocale, routing } from "@/i18n/routing";
 import { Container } from "@/shared/components/Container";
+import { getLocalizedHref } from "./navigationHref";
 
-function getNavigationLabel(item: NavigationItem) {
-  return item.id.charAt(0).toUpperCase() + item.id.slice(1);
-}
-
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("Navigation");
+  const footerT = await getTranslations("Footer");
+  const localeValue = await getLocale();
+  const locale = isAppLocale(localeValue) ? localeValue : routing.defaultLocale;
   const currentYear = new Date().getFullYear();
   const navigationItems: readonly NavigationItem[] = mainNavigation;
   const contactLinkClassName = [
@@ -31,15 +34,16 @@ export function Footer() {
               {siteConfig.name}
             </p>
             <p className="text-sm">
-              &copy; {currentYear} {siteConfig.author.name}. All rights
-              reserved.
+              &copy; {currentYear} {siteConfig.author.name}.{" "}
+              {footerT("copyright")}
             </p>
           </div>
 
-          <nav aria-label="Footer navigation">
+          <nav aria-label={footerT("navigationLabel")}>
             <ul className="flex flex-wrap gap-x-4 gap-y-2">
               {navigationItems.map((item) => {
-                const label = getNavigationLabel(item);
+                const label = t(item.translationKey);
+                const href = getLocalizedHref(item.href, locale);
                 const linkClassName = [
                   "focus-ring rounded-[var(--shape-radius-subtle)]",
                   "text-sm font-medium text-[var(--component-navigation-foreground)]",
@@ -50,7 +54,7 @@ export function Footer() {
                   <li key={item.id}>
                     {item.external ? (
                       <a
-                        href={item.href}
+                        href={href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={linkClassName}
@@ -58,7 +62,7 @@ export function Footer() {
                         {label}
                       </a>
                     ) : (
-                      <Link href={item.href} className={linkClassName}>
+                      <Link href={href} className={linkClassName}>
                         {label}
                       </Link>
                     )}
@@ -68,15 +72,15 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Contact links">
+          <nav aria-label={footerT("contactLinksLabel")}>
             <ul className="flex flex-wrap gap-x-4 gap-y-2">
               <li>
                 <a
                   href="mailto:anas.mokhlis.me@gmail.com"
-                  aria-label="Email Anas Mokhlis"
+                  aria-label={footerT("emailAria")}
                   className={contactLinkClassName}
                 >
-                  Email
+                  {footerT("email")}
                 </a>
               </li>
               <li>
@@ -84,19 +88,19 @@ export function Footer() {
                   href="https://www.linkedin.com/in/anas-mokhlis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Anas Mokhlis on LinkedIn"
+                  aria-label={footerT("linkedinAria")}
                   className={contactLinkClassName}
                 >
-                  LinkedIn
+                  {footerT("linkedin")}
                 </a>
               </li>
               <li>
                 <Link
                   href="/cv/CV-Anas-Mokhlis.pdf"
-                  aria-label="Download Anas Mokhlis CV"
+                  aria-label={footerT("downloadCvAria")}
                   className={contactLinkClassName}
                 >
-                  Download CV
+                  {footerT("downloadCv")}
                 </Link>
               </li>
             </ul>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { NavigationItemId } from "@/config/navigation";
+import { removeLocalePrefix } from "./navigationHref";
 
 const observedSectionIds = [
   "home",
@@ -32,7 +33,7 @@ export function useActiveNavigationItem() {
   const [activeId, setActiveId] = useState<NavigationItemId>("home");
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (removeLocalePrefix(pathname) !== "/") {
       return;
     }
 

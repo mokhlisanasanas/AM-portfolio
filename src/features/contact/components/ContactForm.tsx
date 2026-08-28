@@ -1,10 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import {
-  contactFormSchema,
+  createContactFormSchema,
   type ContactFormValues,
 } from "../data/contactFormSchema";
 import { Button } from "@/shared/components/ui";
@@ -39,6 +40,31 @@ async function parseContactResponse(response: Response) {
 }
 
 export function ContactForm() {
+  const t = useTranslations("Contact.form");
+  function getFieldErrorMessage(name: "fullName" | "email" | "message") {
+    if (name === "fullName") {
+      return t("errors.fullName");
+    }
+
+    if (name === "email") {
+      return t("errors.email");
+    }
+
+    return t("errors.message");
+  }
+
+  const contactFormSchema = useMemo(
+    () =>
+      createContactFormSchema({
+        fullName: t("errors.fullName"),
+        fullNameMax: t("errors.fullNameMax"),
+        email: t("errors.email"),
+        emailMax: t("errors.emailMax"),
+        message: t("errors.message"),
+        messageMax: t("errors.messageMax"),
+      }),
+    [t],
+  );
   const [status, setStatus] = useState<SubmissionStatus>("idle");
   const [formMessage, setFormMessage] = useState("");
   const {
@@ -73,31 +99,31 @@ export function ContactForm() {
     const data = await parseContactResponse(response);
 
     if (!response.ok) {
-      Object.entries(data.fieldErrors ?? {}).forEach(([name, message]) => {
+      Object.entries(data.fieldErrors ?? {}).forEach(([name]) => {
         if (name === "fullName" || name === "email" || name === "message") {
-          setError(name, { message });
+          setError(name, { message: getFieldErrorMessage(name) });
         }
       });
 
       setStatus("error");
-      setFormMessage(data.message ?? "Something went wrong. Please try again.");
+      setFormMessage(t("error"));
 
       return;
     }
 
     setStatus("success");
-    setFormMessage(data.message ?? "Message sent.");
+    setFormMessage(t("success"));
     reset();
   }
 
   const buttonLabel =
     status === "submitting"
-      ? "Sending..."
+      ? t("sending")
       : status === "success"
-        ? "Message sent"
+        ? t("sent")
         : status === "error"
-          ? "Try again"
-          : "Send Message";
+          ? t("tryAgain")
+          : t("send");
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -113,7 +139,7 @@ export function ContactForm() {
           htmlFor="contact-full-name"
           className="text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-primary)]"
         >
-          Full Name
+          {t("fullName")}
         </label>
         <input
           id="contact-full-name"
@@ -138,7 +164,7 @@ export function ContactForm() {
           htmlFor="contact-email"
           className="text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-primary)]"
         >
-          Email
+          {t("email")}
         </label>
         <input
           id="contact-email"
@@ -161,7 +187,7 @@ export function ContactForm() {
           htmlFor="contact-message"
           className="text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-primary)]"
         >
-          Message
+          {t("message")}
         </label>
         <textarea
           id="contact-message"

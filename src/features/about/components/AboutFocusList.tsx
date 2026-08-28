@@ -2,17 +2,23 @@ import { TagList } from "@/shared/components/ui";
 
 interface AboutFocusListProps {
   readonly focusAreas: readonly string[];
+  readonly title: string;
+  readonly label: string;
 }
 
-export function AboutFocusList({ focusAreas }: AboutFocusListProps) {
+export function AboutFocusList({
+  focusAreas,
+  title,
+  label,
+}: AboutFocusListProps) {
   return (
     <div className="space-y-3">
       <h3 className="text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-primary)]">
-        Current focus
+        {title}
       </h3>
       <TagList
         tags={focusAreas}
-        label="Current engineering focus areas"
+        label={label}
         className={[
           "gap-x-4 gap-y-2",
           "[&_span]:border-transparent [&_span]:bg-transparent [&_span]:px-0 [&_span]:py-0",

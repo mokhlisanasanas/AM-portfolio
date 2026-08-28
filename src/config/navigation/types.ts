@@ -7,12 +7,12 @@ export type NavigationItemId =
   | "contact";
 
 export type NavigationTranslationKey =
-  | "nav.home"
-  | "nav.about"
-  | "nav.experience"
-  | "nav.projects"
-  | "nav.skills"
-  | "nav.contact";
+  | "home"
+  | "about"
+  | "experience"
+  | "projects"
+  | "skills"
+  | "contact";
 
 export interface NavigationItem {
   readonly id: NavigationItemId;

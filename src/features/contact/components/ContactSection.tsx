@@ -6,13 +6,16 @@ import { Container } from "@/shared/components/Container";
 import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
+import { getTranslations } from "next-intl/server";
 import { contactContent } from "../data/contactLinks";
 import { ContactForm } from "./ContactForm";
 import { ContactLinkList } from "./ContactLinkList";
 
 const contactTitleId = "contact-title";
 
-export function ContactSection() {
+export async function ContactSection() {
+  const t = await getTranslations("Contact");
+
   return (
     <BackgroundSurface variant="subtle">
       <BackgroundBoundary position="top" />
@@ -30,12 +33,18 @@ export function ContactSection() {
             <div className="space-y-8">
               <SectionHeader
                 id={contactTitleId}
-                eyebrow={contactContent.eyebrow}
-                title={contactContent.title}
-                description={contactContent.description}
+                eyebrow={t("eyebrow")}
+                title={t("title")}
+                description={t("description")}
               />
 
-              <ContactLinkList links={contactContent.links} />
+              <ContactLinkList
+                links={contactContent.links}
+                label={t("professionalLinks")}
+                ariaLabelForLink={(platform) =>
+                  t("visitProfile", { platform })
+                }
+              />
             </div>
 
             <div>

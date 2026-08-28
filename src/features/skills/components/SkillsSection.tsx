@@ -6,12 +6,30 @@ import { Container } from "@/shared/components/Container";
 import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
+import { getTranslations } from "next-intl/server";
 import { skillGroups } from "../data/skillGroups";
 import { SkillGroup } from "./SkillGroup";
 
 const skillsTitleId = "skills-title";
 
-export function SkillsSection() {
+export async function SkillsSection() {
+  const t = await getTranslations("Skills");
+  const localizedSkillLabels: Record<string, string> = {
+    "Frontend architecture": t("items.frontendArchitecture"),
+    Accessibility: t("items.accessibility"),
+    Performance: t("items.performance"),
+    "Design systems": t("items.designSystems"),
+    "Code auditing": t("items.codeAuditing"),
+    "W3C standards": t("items.w3cStandards"),
+    "Agile / Scrum": t("items.agileScrum"),
+  };
+  const localizedSkillGroups = skillGroups.map((group) => ({
+    ...group,
+    title: t(`groups.${group.id}.title`),
+    description: t(`groups.${group.id}.description`),
+    skills: group.skills.map((skill) => localizedSkillLabels[skill] ?? skill),
+  }));
+
   return (
     <BackgroundSurface variant="subtle">
       <BackgroundBoundary position="top" />
@@ -25,15 +43,19 @@ export function SkillsSection() {
             <div>
               <SectionHeader
                 id={skillsTitleId}
-                eyebrow="Capabilities"
-                title="Tech Stack & Skills"
-                description="Current frontend specialization, engineering practices and supporting development tooling."
+                eyebrow={t("eyebrow")}
+                title={t("title")}
+                description={t("description")}
               />
             </div>
 
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-12">
-              {skillGroups.map((group) => (
-                <SkillGroup key={group.id} group={group} />
+              {localizedSkillGroups.map((group) => (
+                <SkillGroup
+                  key={group.id}
+                  group={group}
+                  skillsLabel={t("labels.skills", { groupTitle: group.title })}
+                />
               ))}
             </div>
           </MotionStagger>

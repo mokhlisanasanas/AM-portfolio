@@ -4,9 +4,14 @@ import type { HeroAction, HeroLink } from "../data/heroContent";
 interface HeroActionsProps {
   readonly actions: readonly HeroAction[];
   readonly linkedIn: HeroLink;
+  readonly linkedInAriaLabel: string;
 }
 
-export function HeroActions({ actions, linkedIn }: HeroActionsProps) {
+export function HeroActions({
+  actions,
+  linkedIn,
+  linkedInAriaLabel,
+}: HeroActionsProps) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
       {actions.map((action) => {
@@ -32,7 +37,7 @@ export function HeroActions({ actions, linkedIn }: HeroActionsProps) {
 
       <ExternalLink
         href={linkedIn.href}
-        aria-label="Visit Anas Mokhlis on LinkedIn"
+        aria-label={linkedInAriaLabel}
         className="inline-flex min-h-11 items-center justify-center text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] sm:ml-2 sm:justify-start"
       >
         {linkedIn.label}
