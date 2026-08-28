@@ -6,13 +6,34 @@ import { Container } from "@/shared/components/Container";
 import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
+import { getLocale, getTranslations } from "next-intl/server";
+import { isAppLocale, routing } from "@/i18n/routing";
 import { featuredProjects } from "../data/featuredProjects";
 import { ProjectCard } from "./ProjectCard";
 
 const projectsTitleId = "featured-projects-title";
 
-export function FeaturedProjectsSection() {
-  const [primaryProject, ...secondaryProjects] = featuredProjects;
+export async function FeaturedProjectsSection() {
+  const t = await getTranslations("Projects");
+  const localeValue = await getLocale();
+  const locale = isAppLocale(localeValue) ? localeValue : routing.defaultLocale;
+  const localizedProjects = featuredProjects.map((project) => ({
+    ...project,
+    description: t(`items.${project.id}.description`),
+    links: project.links?.map((link) => ({
+      ...link,
+      href:
+        link.external || !link.href.startsWith("/")
+          ? link.href
+          : `/${locale}${link.href}`,
+      label: link.kind === "case-study" ? t("labels.viewCaseStudy") : link.label,
+    })),
+  }));
+  const [primaryProject, ...secondaryProjects] = localizedProjects;
+  const labels = {
+    role: t("labels.role"),
+    company: t("labels.company"),
+  };
 
   return (
     <BackgroundSurface variant="subtle">
@@ -27,9 +48,9 @@ export function FeaturedProjectsSection() {
             <div>
               <SectionHeader
                 id={projectsTitleId}
-                eyebrow="Selected Work"
-                title="Featured Projects"
-                description="A selection of frontend projects built across web and mobile, with a focus on scalable architecture, maintainability and modern React ecosystems."
+                eyebrow={t("eyebrow")}
+                title={t("title")}
+                description={t("description")}
               />
             </div>
 
@@ -39,12 +60,30 @@ export function FeaturedProjectsSection() {
               staggerDelay={0.1}
             >
               <div>
-                <ProjectCard project={primaryProject} featured />
+                <ProjectCard
+                  project={primaryProject}
+                  featured
+                  labels={{
+                    ...labels,
+                    technologyStack: t("labels.technologyStack", {
+                      projectTitle: primaryProject.title,
+                    }),
+                  }}
+                />
               </div>
 
               <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
                 {secondaryProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    labels={{
+                      ...labels,
+                      technologyStack: t("labels.technologyStack", {
+                        projectTitle: project.title,
+                      }),
+                    }}
+                  />
                 ))}
               </div>
             </MotionStagger>

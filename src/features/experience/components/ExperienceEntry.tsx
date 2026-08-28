@@ -7,11 +7,17 @@ import { ExperienceTechList } from "./ExperienceTechList";
 interface ExperienceEntryProps {
   readonly experience: ExperienceItem;
   readonly current?: boolean;
+  readonly labels: {
+    readonly role: string;
+    readonly selectedProjects: string;
+    readonly technologies: string;
+  };
 }
 
 export function ExperienceEntry({
   experience,
   current = false,
+  labels,
 }: ExperienceEntryProps) {
   return (
     <article
@@ -31,16 +37,19 @@ export function ExperienceEntry({
       </div>
 
       <div className="space-y-4 lg:col-span-5">
-        <ExperienceMeta role={experience.role} />
+        <ExperienceMeta role={experience.role} roleLabel={labels.role} />
         <Text>{experience.description}</Text>
       </div>
 
       <div className="space-y-6 lg:col-span-4">
         <ExperienceTechList
           technologies={experience.technologies}
-          company={experience.company}
+          label={labels.technologies}
         />
-        <ExperienceProjectList projects={experience.selectedProjects} />
+        <ExperienceProjectList
+          projects={experience.selectedProjects}
+          label={labels.selectedProjects}
+        />
       </div>
     </article>
   );

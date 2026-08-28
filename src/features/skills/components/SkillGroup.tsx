@@ -4,9 +4,10 @@ import { SkillList } from "./SkillList";
 
 interface SkillGroupProps {
   readonly group: SkillGroupData;
+  readonly skillsLabel: string;
 }
 
-export function SkillGroup({ group }: SkillGroupProps) {
+export function SkillGroup({ group, skillsLabel }: SkillGroupProps) {
   const isPrimary = group.priority === "primary";
   const isSecondary = group.priority === "secondary";
   const layoutClassName =
@@ -48,7 +49,7 @@ export function SkillGroup({ group }: SkillGroupProps) {
 
       <SkillList
         skills={group.skills}
-        label={`${group.title} skills`}
+        label={skillsLabel}
         priority={group.priority}
       />
     </section>

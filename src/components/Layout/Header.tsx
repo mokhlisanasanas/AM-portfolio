@@ -2,6 +2,7 @@ import { Container } from "@/shared/components/Container";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { BrandLogo } from "./BrandLogo";
 import { DesktopNavigation } from "./DesktopNavigation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileNavigation } from "./MobileNavigation";
 
 export function Header() {
@@ -25,8 +26,8 @@ export function Header() {
           <MobileNavigation />
 
           <div className="hidden min-w-0 items-center justify-end gap-3 md:flex">
-            {/* Future LanguageSwitcher belongs beside the theme controls. */}
-            <ThemeToggle legend="Theme" />
+            <LanguageSwitcher />
+            <ThemeToggle />
           </div>
         </div>
       </Container>

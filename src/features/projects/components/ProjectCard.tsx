@@ -7,9 +7,18 @@ import { ProjectTechList } from "./ProjectTechList";
 interface ProjectCardProps {
   readonly project: FeaturedProject;
   readonly featured?: boolean;
+  readonly labels: {
+    readonly role: string;
+    readonly company: string;
+    readonly technologyStack: string;
+  };
 }
 
-export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  featured = false,
+  labels,
+}: ProjectCardProps) {
   return (
     <article
       className={[
@@ -33,7 +42,12 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           </Text>
         </div>
 
-        <ProjectMeta role={project.role} company={project.company} />
+        <ProjectMeta
+          role={project.role}
+          company={project.company}
+          roleLabel={labels.role}
+          companyLabel={labels.company}
+        />
       </div>
 
       <div
@@ -45,7 +59,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       >
         <ProjectTechList
           techStack={project.techStack}
-          projectTitle={project.title}
+          label={labels.technologyStack}
         />
         <ProjectLinks links={project.links} />
       </div>

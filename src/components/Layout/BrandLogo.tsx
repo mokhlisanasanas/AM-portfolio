@@ -2,15 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "@/components/theme/useTheme";
+import { isAppLocale, routing } from "@/i18n/routing";
+import { getLocalizedHref } from "./navigationHref";
 
 export function BrandLogo() {
   const { isHydrated, resolvedTheme } = useTheme();
+  const currentLocaleValue = useLocale();
+  const currentLocale = isAppLocale(currentLocaleValue)
+    ? currentLocaleValue
+    : routing.defaultLocale;
+  const t = useTranslations("Navigation");
 
   return (
     <Link
-      href="/"
-      aria-label="Anas Mokhlis — Home"
+      href={getLocalizedHref("/", currentLocale)}
+      aria-label={`Anas Mokhlis - ${t("home")}`}
       data-theme-ready={isHydrated ? resolvedTheme : undefined}
       className={[
         "focus-ring relative inline-flex aspect-[3/2] w-14 shrink-0 items-center",

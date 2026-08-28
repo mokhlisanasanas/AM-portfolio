@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
 import { mainNavigation, type NavigationItem } from "@/config/navigation";
+import { isAppLocale, routing } from "@/i18n/routing";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { contactContent } from "@/features/contact/data/contactLinks";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { getLocalizedHref } from "./navigationHref";
 import { useActiveNavigationItem } from "./useActiveNavigationItem";
 
 interface MobileNavigationProps {
   readonly className?: string;
-}
-
-function getNavigationLabel(item: NavigationItem) {
-  return item.id.charAt(0).toUpperCase() + item.id.slice(1);
 }
 
 export function MobileNavigation({ className = "" }: MobileNavigationProps) {
@@ -23,6 +23,13 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const navigationItems: readonly NavigationItem[] = mainNavigation;
   const activeId = useActiveNavigationItem();
+  const currentLocaleValue = useLocale();
+  const currentLocale = isAppLocale(currentLocaleValue)
+    ? currentLocaleValue
+    : routing.defaultLocale;
+  const t = useTranslations("Navigation");
+  const interfaceT = useTranslations("Common");
+  const footerT = useTranslations("Footer");
   const linkedInLink = contactContent.links.find((link) => link.id === "linkedin");
   const cvAction = contactContent.actions.find((action) => action.id === "cv");
 
@@ -76,10 +83,11 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
         "px-[var(--container-padding-sm)] py-6 sm:px-[var(--container-padding-md)]",
       ].join(" ")}
     >
-      <nav aria-label="Main navigation">
+      <nav aria-label={t("mainLabel")}>
         <ul className="flex flex-col gap-1">
           {navigationItems.map((item) => {
-            const label = getNavigationLabel(item);
+            const label = t(item.translationKey);
+            const href = getLocalizedHref(item.href, currentLocale);
             const isActive = item.id === activeId;
             const linkClassName = [
               "focus-ring flex min-h-12 items-center rounded-[var(--shape-radius-subtle)] px-2",
@@ -94,7 +102,7 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
               <li key={item.id}>
                 {item.external ? (
                   <a
-                    href={item.href}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={linkClassName}
@@ -105,7 +113,7 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
                   </a>
                 ) : (
                   <Link
-                    href={item.href}
+                    href={href}
                     className={linkClassName}
                     aria-current={isActive ? "location" : undefined}
                     onClick={closeMenu}
@@ -126,9 +134,21 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
 
       <div className="space-y-3">
         <p className="text-[length:var(--typography-size-body-sm)] font-medium text-[var(--color-text-secondary)]">
-          Theme
+          {interfaceT("language")}
         </p>
-        <ThemeToggle legend="Theme" className="w-full" showLabel />
+        <LanguageSwitcher className="w-full" />
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="my-6 h-px bg-[var(--component-divider-color)]"
+      />
+
+      <div className="space-y-3">
+        <p className="text-[length:var(--typography-size-body-sm)] font-medium text-[var(--color-text-secondary)]">
+          {interfaceT("theme")}
+        </p>
+        <ThemeToggle legend={interfaceT("theme")} className="w-full" showLabel />
       </div>
 
       {linkedInLink || cvAction ? (
@@ -145,7 +165,7 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
               ].join(" ")}
               onClick={closeMenu}
             >
-              {linkedInLink.label}
+              {footerT("linkedin")}
             </a>
           ) : null}
 
@@ -159,7 +179,7 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
               ].join(" ")}
               onClick={closeMenu}
             >
-              {cvAction.label}
+              {footerT("downloadCv")}
             </Link>
           ) : null}
         </div>
@@ -172,7 +192,11 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
       <button
         ref={triggerRef}
         type="button"
-        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-label={
+          isOpen
+            ? interfaceT("closeNavigationMenu")
+            : interfaceT("openNavigationMenu")
+        }
         aria-expanded={isOpen}
         aria-controls={panelId}
         className={[
@@ -186,7 +210,9 @@ export function MobileNavigation({ className = "" }: MobileNavigationProps) {
         }}
       >
         <span className="sr-only">
-          {isOpen ? "Close navigation menu" : "Open navigation menu"}
+          {isOpen
+            ? interfaceT("closeNavigationMenu")
+            : interfaceT("openNavigationMenu")}
         </span>
         <span aria-hidden="true" className="relative block size-5">
           <span

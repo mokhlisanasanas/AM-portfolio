@@ -7,6 +7,7 @@ import { Container } from "@/shared/components/Container";
 import { MotionStagger } from "@/shared/motion";
 import { Section } from "@/shared/components/Section";
 import { Eyebrow, Heading, Text } from "@/shared/components/ui";
+import { getTranslations } from "next-intl/server";
 import { heroContent } from "../data/heroContent";
 import { HeroActions } from "./HeroActions";
 import { HeroHighlights } from "./HeroHighlights";
@@ -14,7 +15,37 @@ import { HeroIdentityPanel } from "./HeroIdentityPanel";
 
 const heroTitleId = "hero-title";
 
-export function HeroSection() {
+export async function HeroSection() {
+  const t = await getTranslations("Hero");
+  const actions = heroContent.actions.map((action) => ({
+    ...action,
+    label: action.id === "cv" ? t("downloadCv") : t("viewProjects"),
+  }));
+  const highlights = [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "React Native",
+    t("highlights.performance"),
+    t("highlights.accessibility"),
+    t("highlights.designSystems"),
+    t("highlights.aiAssistedWorkflows"),
+  ];
+  const identityPanel = {
+    ...heroContent.identityPanel,
+    role: t("role"),
+    current: {
+      ...heroContent.identityPanel.current,
+      label: t("currently"),
+      since: t("sinceDecember2021"),
+    },
+    focus: [
+      t("focusAreas.frontendArchitecture"),
+      t("focusAreas.accessibility"),
+      t("focusAreas.performance"),
+    ],
+  };
+
   return (
     <BackgroundSurface variant="canvas">
       <BackgroundGrid />
@@ -46,7 +77,7 @@ export function HeroSection() {
                 staggerDelay={0.1}
               >
                 <div>
-                  <Eyebrow>{heroContent.eyebrow}</Eyebrow>
+                  <Eyebrow>{t("eyebrow")}</Eyebrow>
                 </div>
 
                 <div>
@@ -56,31 +87,40 @@ export function HeroSection() {
                     size="page"
                     className="max-w-5xl text-balance md:text-[length:var(--font-size-7xl)]"
                   >
-                    {heroContent.title}
+                    {t("title")}
                   </Heading>
                 </div>
 
                 <div>
                   <Text size="lg" className="max-w-3xl">
-                    {heroContent.description}
+                    {t("description")}
                   </Text>
                 </div>
               </MotionStagger>
 
               <div>
                 <HeroActions
-                  actions={heroContent.actions}
+                  actions={actions}
                   linkedIn={heroContent.linkedIn}
+                  linkedInAriaLabel={t("linkedInAria")}
                 />
               </div>
 
               <div>
-                <HeroHighlights highlights={heroContent.highlights} />
+                <HeroHighlights
+                  highlights={highlights}
+                  label={t("frontendSpecializations")}
+                />
               </div>
             </MotionStagger>
 
             <div>
-              <HeroIdentityPanel content={heroContent.identityPanel} />
+              <HeroIdentityPanel
+                content={identityPanel}
+                ariaLabel={t("identityAria")}
+                stackTitle={t("currentStack")}
+                focusTitle={t("focus")}
+              />
             </div>
           </MotionStagger>
         </Container>

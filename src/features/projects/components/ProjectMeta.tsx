@@ -1,12 +1,19 @@
 interface ProjectMetaProps {
   readonly role?: string;
   readonly company?: string;
+  readonly roleLabel?: string;
+  readonly companyLabel?: string;
 }
 
-export function ProjectMeta({ role, company }: ProjectMetaProps) {
+export function ProjectMeta({
+  role,
+  company,
+  roleLabel = "Role",
+  companyLabel = "Company",
+}: ProjectMetaProps) {
   const metaItems = [
-    role ? { label: "Role", value: role } : null,
-    company ? { label: "Company", value: company } : null,
+    role ? { label: roleLabel, value: role } : null,
+    company ? { label: companyLabel, value: company } : null,
   ].filter((item): item is { readonly label: string; readonly value: string } =>
     Boolean(item),
   );

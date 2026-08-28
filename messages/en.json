@@ -1,0 +1,217 @@
+{
+  "Navigation": {
+    "mainLabel": "Main navigation",
+    "home": "Home",
+    "projects": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "navigationLabel": "Footer navigation",
+    "contactLinksLabel": "Contact links",
+    "email": "Email",
+    "emailAria": "Email Anas Mokhlis",
+    "linkedin": "LinkedIn",
+    "linkedinAria": "Visit Anas Mokhlis on LinkedIn",
+    "downloadCv": "Download CV",
+    "downloadCvAria": "Download Anas Mokhlis CV",
+    "copyright": "All rights reserved."
+  },
+  "Common": {
+    "language": "Language",
+    "theme": "Theme",
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode",
+    "switchToLightMode": "Switch to light mode",
+    "switchToDarkMode": "Switch to dark mode",
+    "openNavigationMenu": "Open navigation menu",
+    "closeNavigationMenu": "Close navigation menu",
+    "footerNavigation": "Footer navigation",
+    "contactLinks": "Contact links",
+    "allRightsReserved": "All rights reserved.",
+    "email": "Email",
+    "emailAria": "Email Anas Mokhlis",
+    "linkedinAria": "Visit Anas Mokhlis on LinkedIn",
+    "downloadCv": "Download CV",
+    "downloadCvAria": "Download Anas Mokhlis CV"
+  },
+  "Hero": {
+    "eyebrow": "Front-End Engineer / React - Next.js - TypeScript",
+    "title": "ANAS MOKHLIS",
+    "description": "Front-End Engineer specialized in React, Next.js and TypeScript, focused on scalable frontend architecture, performance, accessibility, design systems and AI-assisted development workflows.",
+    "viewProjects": "View Projects",
+    "downloadCv": "Download CV",
+    "linkedInAria": "Visit Anas Mokhlis on LinkedIn",
+    "identityAria": "Professional identity",
+    "role": "Front-End Developer",
+    "currently": "Currently",
+    "sinceDecember2021": "Since December 2021",
+    "currentStack": "Current stack",
+    "focus": "Focus",
+    "frontendSpecializations": "Frontend specializations",
+    "focusAreas": {
+      "frontendArchitecture": "Frontend architecture",
+      "accessibility": "Accessibility",
+      "performance": "Performance"
+    },
+    "highlights": {
+      "performance": "Performance",
+      "accessibility": "Accessibility",
+      "designSystems": "Design Systems",
+      "aiAssistedWorkflows": "AI-assisted workflows"
+    }
+  },
+  "Projects": {
+    "eyebrow": "Selected Work",
+    "title": "Featured Projects",
+    "description": "A selection of frontend projects built across web and mobile, with a focus on scalable architecture, maintainability and modern React ecosystems.",
+    "labels": {
+      "role": "Role",
+      "company": "Company",
+      "technologyStack": "{projectTitle} technology stack",
+      "viewCaseStudy": "View case study"
+    },
+    "items": {
+      "myinwi": {
+        "description": "A modern telecom self-care web experience."
+      },
+      "flyer-be": {
+        "description": "Front-end development and integration work using React.js, Next.js and TypeScript, including UI integration, code auditing and bug resolution."
+      },
+      "xii-school": {
+        "description": "Mobile application developed with React Native."
+      }
+    }
+  },
+  "Experience": {
+    "eyebrow": "Experience",
+    "title": "Professional Experience",
+    "description": "Selected professional experience across modern frontend development, web platforms and mobile applications.",
+    "labels": {
+      "role": "Role",
+      "selectedProjects": "Selected projects",
+      "technologies": "{company} technologies"
+    },
+    "items": {
+      "gear9": {
+        "role": "Front-End Developer",
+        "period": "December 2021 - Present",
+        "description": "Front-end development across modern web and mobile applications using React, Next.js, TypeScript and React Native."
+      },
+      "eyaka-be": {
+        "role": "Front-End Developer",
+        "period": "June 2021 - November 2021",
+        "description": "Front-end development using Angular, with GitLab, Node.js and Git as part of the development workflow."
+      },
+      "flyer-ma": {
+        "role": "Front-End Developer",
+        "period": "March 2018 - June 2021",
+        "description": "Front-end development and integration work covering React, HTML/CSS, Drupal integration, source-code auditing, bug resolution and W3C compliance checks."
+      },
+      "hrconsulting": {
+        "role": "PHP Developer",
+        "period": "November 2017 - February 2018",
+        "description": "Development of dynamic web functionality with PHP/MySQL and front-end pages using HTML, CSS and JavaScript."
+      }
+    }
+  },
+  "Skills": {
+    "eyebrow": "Capabilities",
+    "title": "Tech Stack & Skills",
+    "description": "Current frontend specialization, engineering practices and supporting development tooling.",
+    "labels": {
+      "skills": "{groupTitle} skills"
+    },
+    "groups": {
+      "core-frontend": {
+        "title": "Core Frontend",
+        "description": "Modern frontend development across web and mobile, centered on React, Next.js and TypeScript."
+      },
+      "architecture-quality": {
+        "title": "Architecture & Quality",
+        "description": "Engineering practices focused on scalable frontend structure, usability and long-term maintainability."
+      },
+      "tooling-workflow": {
+        "title": "Tooling & Workflow",
+        "description": "Day-to-day development tooling and collaborative delivery workflows."
+      },
+      "additional-experience": {
+        "title": "Additional Experience",
+        "description": "Earlier web-development experience that adds breadth beyond the current React-focused specialization."
+      }
+    },
+    "items": {
+      "frontendArchitecture": "Frontend architecture",
+      "accessibility": "Accessibility",
+      "performance": "Performance",
+      "designSystems": "Design systems",
+      "codeAuditing": "Code auditing",
+      "w3cStandards": "W3C standards",
+      "agileScrum": "Agile / Scrum"
+    }
+  },
+  "About": {
+    "eyebrow": "About",
+    "title": "From Web Development to Modern Frontend Engineering",
+    "description": "A focused evolution from broad web development into modern React, Next.js and TypeScript engineering.",
+    "story": {
+      "one": "Anas Mokhlis is a Front-End Developer focused on building frontend experiences with React, Next.js and TypeScript.",
+      "two": "His technical path moved from earlier web development with PHP/MySQL, HTML/CSS/JavaScript, WordPress and Drupal toward Angular, React, React Native, Next.js and TypeScript.",
+      "three": "He currently works at Gear9, with verified project experience on MyInwi and the XII School mobile application.",
+      "four": "His current engineering focus includes frontend architecture, accessibility, performance, maintainability and design systems."
+    },
+    "focusTitle": "Current focus",
+    "focusLabel": "Current engineering focus areas",
+    "backgroundTitle": "Background",
+    "focusAreas": {
+      "frontendArchitecture": "Frontend Architecture",
+      "accessibility": "Accessibility",
+      "performance": "Performance",
+      "maintainability": "Maintainability",
+      "designSystems": "Design Systems",
+      "aiAssistedDevelopment": "AI-assisted Development"
+    },
+    "backgroundPoints": {
+      "education": {
+        "label": "Education",
+        "value": "Web, mobile and application engineering studies"
+      },
+      "developmentFoundation": {
+        "label": "Development foundation",
+        "value": "PHP/MySQL, HTML, CSS, JavaScript, WordPress and Drupal"
+      },
+      "collaborativeWorkflow": {
+        "label": "Collaborative workflow",
+        "value": "Git, GitHub/GitLab, JIRA and Agile/Scrum"
+      }
+    }
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Let's Build Something Useful",
+    "description": "For frontend opportunities, React and Next.js projects, or professional collaboration, feel free to get in touch.",
+    "professionalLinks": "Professional links",
+    "visitProfile": "Visit Anas Mokhlis on {platform}",
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "sent": "Message sent",
+      "tryAgain": "Try again",
+      "success": "Message sent.",
+      "error": "Something went wrong. Please try again.",
+      "errors": {
+        "fullName": "Enter your full name.",
+        "fullNameMax": "Full name is too long.",
+        "email": "Enter a valid email address.",
+        "emailMax": "Email address is too long.",
+        "message": "Message must be at least 20 characters.",
+        "messageMax": "Message is too long."
+      }
+    }
+  }
+}

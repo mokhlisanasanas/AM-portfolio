@@ -1,9 +1,11 @@
 interface ExperienceProjectListProps {
   readonly projects?: readonly string[];
+  readonly label: string;
 }
 
 export function ExperienceProjectList({
   projects,
+  label,
 }: ExperienceProjectListProps) {
   if (!projects || projects.length === 0) {
     return null;
@@ -12,7 +14,7 @@ export function ExperienceProjectList({
   return (
     <div className="space-y-2.5">
       <p className="text-[length:var(--typography-size-body-sm)] text-[var(--color-text-muted)]">
-        Selected projects
+        {label}
       </p>
       <ul className="space-y-2">
         {projects.map((project) => (
