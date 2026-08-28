@@ -9,6 +9,20 @@ import { ProjectTechList } from "./ProjectTechList";
 
 interface ProjectDetailContentProps {
   readonly project: ProjectCaseStudy;
+  readonly backHref: string;
+  readonly labels: {
+    readonly overview: string;
+    readonly contribution: string;
+    readonly functionalScope: string;
+    readonly engineeringApproach: string;
+    readonly engineeringChallenges: string;
+    readonly solutionsApproach: string;
+    readonly technologies: string;
+    readonly productReference: string;
+    readonly productReferenceCaptionPrefix: string;
+    readonly backToProjects: string;
+    readonly fallbackContribution: string;
+  };
 }
 
 interface DetailSectionProps {
@@ -39,7 +53,11 @@ function DetailSection({ number, title, id, children }: DetailSectionProps) {
   );
 }
 
-export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
+export function ProjectDetailContent({
+  project,
+  backHref,
+  labels,
+}: ProjectDetailContentProps) {
   const hasResponsibilities = project.responsibilities.length > 0;
   const hasChallenges = project.challenges.length > 0;
   const hasSolutions = hasChallenges && project.solutions.length > 0;
@@ -53,7 +71,11 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
     <Container>
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="space-y-10 lg:col-span-8">
-          <DetailSection number="01" title="Overview" id="project-overview">
+          <DetailSection
+            number="01"
+            title={labels.overview}
+            id="project-overview"
+          >
             <Text size="lg" className="max-w-3xl">
               {project.description}
             </Text>
@@ -61,7 +83,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
 
           <DetailSection
             number="02"
-            title="My contribution"
+            title={labels.contribution}
             id="project-contribution"
           >
             {hasResponsibilities ? (
@@ -76,16 +98,13 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 ))}
               </ul>
             ) : (
-              <Text>
-                Worked on {project.title} as a {project.role}
-                {project.company ? ` at ${project.company}` : ""}.
-              </Text>
+              <Text>{labels.fallbackContribution}</Text>
             )}
           </DetailSection>
 
           <DetailSection
             number="03"
-            title="Functional Scope"
+            title={labels.functionalScope}
             id="project-functional-scope"
           >
             {hasFunctionalScope ? (
@@ -133,7 +152,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           {hasEngineeringApproach ? (
             <DetailSection
               number="04"
-              title="Engineering Approach"
+              title={labels.engineeringApproach}
               id="project-engineering-approach"
             >
               <ul className="grid gap-3 sm:grid-cols-2">
@@ -152,7 +171,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           {hasChallenges ? (
             <DetailSection
               number="05"
-              title="Engineering challenges"
+              title={labels.engineeringChallenges}
               id="project-challenges"
             >
               <div className="space-y-5">
@@ -171,7 +190,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           {hasSolutions ? (
             <DetailSection
               number="06"
-              title="Solutions & approach"
+              title={labels.solutionsApproach}
               id="project-solutions"
             >
               <div className="space-y-5">
@@ -189,7 +208,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
 
           <DetailSection
             number="05"
-            title="Technologies"
+            title={labels.technologies}
             id="project-technologies"
           >
             <ProjectTechList
@@ -200,10 +219,10 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
 
           <div className="flex justify-start pt-2 md:justify-end">
             <Link
-              href="/#projects"
+              href={backHref}
               className="focus-ring rounded-[var(--shape-radius-subtle)] text-[length:var(--typography-size-body-sm)] font-[var(--typography-weight-emphasis)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
             >
-              Back to projects
+              {labels.backToProjects}
             </Link>
           </div>
         </div>
@@ -211,6 +230,8 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
         <ProjectScreenshots
           screenshots={project.screenshots}
           note={project.productReferenceNote}
+          title={labels.productReference}
+          captionPrefix={labels.productReferenceCaptionPrefix}
           number="06"
         />
       </div>

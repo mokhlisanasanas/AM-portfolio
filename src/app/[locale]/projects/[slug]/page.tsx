@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getProjectCaseStudyBySlug,
+  localizeProjectCaseStudy,
+  type ProjectCaseStudyLocalization,
   projectCaseStudies,
   ProjectDetailLayout,
 } from "@/features/projects";
-import { getAbsoluteUrl } from "@/config/site/siteUrl";
+import {
+  getLocalizedCanonical,
+  getLocalizedLanguageAlternates,
+} from "@/i18n/metadata";
 import { isAppLocale, routing } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
 type LocalizedProjectPageProps = PageProps<"/[locale]/projects/[slug]">;
 
@@ -30,27 +36,35 @@ export async function generateMetadata({
     return {};
   }
 
-  const canonicalUrl = getAbsoluteUrl(
-    `/${activeLocale}/projects/${project.slug}`,
+  const t = await getTranslations({
+    locale: activeLocale,
+    namespace: "Projects",
+  });
+  const localizedProject = localizeProjectCaseStudy(
+    project,
+    t.raw(`items.${project.slug}`) as ProjectCaseStudyLocalization,
   );
+  const projectPath = `/projects/${project.slug}`;
+  const canonicalUrl = getLocalizedCanonical(projectPath, activeLocale);
 
   return {
-    title: project.seo.title,
-    description: project.seo.description,
+    title: localizedProject.seo.title,
+    description: localizedProject.seo.description,
     alternates: {
       canonical: canonicalUrl,
+      languages: getLocalizedLanguageAlternates(projectPath),
     },
     openGraph: {
-      title: project.seo.title,
-      description: project.seo.description,
+      title: localizedProject.seo.title,
+      description: localizedProject.seo.description,
       url: canonicalUrl,
       type: "article",
       locale: activeLocale === "fr" ? "fr_FR" : "en_US",
     },
     twitter: {
       card: "summary",
-      title: project.seo.title,
-      description: project.seo.description,
+      title: localizedProject.seo.title,
+      description: localizedProject.seo.description,
     },
   };
 }

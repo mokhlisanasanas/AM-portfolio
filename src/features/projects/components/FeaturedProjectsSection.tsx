@@ -8,7 +8,11 @@ import { Section } from "@/shared/components/Section";
 import { SectionHeader } from "@/shared/components/ui";
 import { getLocale, getTranslations } from "next-intl/server";
 import { isAppLocale, routing } from "@/i18n/routing";
-import { featuredProjects } from "../data/featuredProjects";
+import {
+  localizeProjectCaseStudy,
+  projectCaseStudies,
+  type ProjectCaseStudyLocalization,
+} from "../data/projectCaseStudies";
 import { ProjectCard } from "./ProjectCard";
 
 const projectsTitleId = "featured-projects-title";
@@ -17,18 +21,34 @@ export async function FeaturedProjectsSection() {
   const t = await getTranslations("Projects");
   const localeValue = await getLocale();
   const locale = isAppLocale(localeValue) ? localeValue : routing.defaultLocale;
-  const localizedProjects = featuredProjects.map((project) => ({
-    ...project,
-    description: t(`items.${project.id}.description`),
-    links: project.links?.map((link) => ({
-      ...link,
-      href:
-        link.external || !link.href.startsWith("/")
-          ? link.href
-          : `/${locale}${link.href}`,
-      label: link.kind === "case-study" ? t("labels.viewCaseStudy") : link.label,
-    })),
-  }));
+  const localizedProjects = projectCaseStudies.map((project) => {
+    const localization = t.raw(
+      `items.${project.slug}`,
+    ) as ProjectCaseStudyLocalization;
+    const localizedProject = localizeProjectCaseStudy(project, localization);
+
+    return {
+      id: localizedProject.slug,
+      slug: localizedProject.slug,
+      title: localizedProject.title,
+      description: localizedProject.summary,
+      techStack: localizedProject.technologies,
+      role: localizedProject.role,
+      company: localizedProject.company,
+      links: localizedProject.links?.map((link) => ({
+        ...link,
+        href:
+          link.external || !link.href.startsWith("/")
+            ? link.href
+            : `/${locale}${link.href}`,
+        label:
+          link.kind === "case-study"
+            ? t("labels.viewCaseStudy")
+            : localization.links?.find((candidate) => candidate.id === link.id)
+                ?.label ?? link.label,
+      })),
+    };
+  });
   const [primaryProject, ...secondaryProjects] = localizedProjects;
   const labels = {
     role: t("labels.role"),

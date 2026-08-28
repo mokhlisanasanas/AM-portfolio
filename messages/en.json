@@ -35,7 +35,13 @@
     "emailAria": "Email Anas Mokhlis",
     "linkedinAria": "Visit Anas Mokhlis on LinkedIn",
     "downloadCv": "Download CV",
-    "downloadCvAria": "Download Anas Mokhlis CV"
+    "downloadCvAria": "Download Anas Mokhlis CV",
+    "seo": {
+      "home": {
+        "title": "Anas Mokhlis - Front-End Developer",
+        "description": "Front-End Developer specialized in React, Next.js and TypeScript, focused on scalable frontend architecture, performance, accessibility and modern web experiences."
+      }
+    }
   },
   "Hero": {
     "eyebrow": "Front-End Engineer / React - Next.js - TypeScript",
@@ -75,14 +81,153 @@
     },
     "items": {
       "myinwi": {
-        "description": "A modern telecom self-care web experience."
+        "summary": "A modern telecom self-care web experience.",
+        "description": "MyInwi sits in the telecom self-care domain and was developed as a web application during front-end work at Gear9. The verified implementation stack is Next.js, React and TypeScript.",
+        "role": "Front-End Developer",
+        "technicalScope": [
+          "Next.js web application",
+          "React interface development",
+          "TypeScript frontend implementation"
+        ],
+        "functionalScope": [
+          {
+            "id": "catalog-products",
+            "title": "Catalog & Products",
+            "items": [
+              "Product catalogue and filtering",
+              "Mobile offers",
+              "Smartphones",
+              "Recharge products",
+              "Stock and commercial availability"
+            ]
+          },
+          {
+            "id": "customer-authentication",
+            "title": "Customer & Authentication",
+            "items": [
+              "OTP flows",
+              "Customer profile",
+              "Line and product information"
+            ]
+          },
+          {
+            "id": "billing-payment",
+            "title": "Billing & Payment",
+            "items": [
+              "B2C and B2B invoices",
+              "Invoice history",
+              "Invoice download",
+              "Card payment flows"
+            ]
+          },
+          {
+            "id": "mobile-services",
+            "title": "Mobile Services",
+            "items": [
+              "Roaming status",
+              "eSIM-related services"
+            ]
+          },
+          {
+            "id": "portability",
+            "title": "Portability",
+            "items": [
+              "Number portability flows",
+              "RIO handling",
+              "Operator and product selection"
+            ]
+          },
+          {
+            "id": "content-discovery",
+            "title": "Content & Discovery",
+            "items": [
+              "Search",
+              "FAQ",
+              "Press and content filtering",
+              "Pagination and infinite loading where applicable"
+            ]
+          },
+          {
+            "id": "forms-validation",
+            "title": "Forms & Validation",
+            "items": [
+              "Form handling and validation",
+              "Moroccan phone-number validation",
+              "User input and error handling"
+            ]
+          }
+        ],
+        "engineeringApproach": [
+          "Reusable component architecture",
+          "Typed frontend development",
+          "API integration",
+          "State management",
+          "Form validation",
+          "Responsive implementation",
+          "Accessibility considerations",
+          "Maintainable frontend structure"
+        ],
+        "responsibilities": [
+          "Front-end development with React, Next.js and TypeScript.",
+          "Reusable UI and component integration.",
+          "Integration of frontend interfaces with backend APIs.",
+          "Responsive interface implementation.",
+          "Form handling and validation.",
+          "Frontend debugging and maintenance.",
+          "Accessibility and frontend quality considerations."
+        ],
+        "productReferenceNote": "Selected views from the current public inwi digital experience are shown for product context.",
+        "links": [
+          {
+            "id": "myinwi-case-study",
+            "label": "View case study"
+          }
+        ],
+        "seo": {
+          "title": "MyInwi Project",
+          "description": "A modern telecom self-care web experience developed with Next.js, React and TypeScript."
+        }
       },
       "flyer-be": {
-        "description": "Front-end development and integration work using React.js, Next.js and TypeScript, including UI integration, code auditing and bug resolution."
+        "summary": "Front-end development and integration work using React.js, Next.js and TypeScript, including UI integration, code auditing and bug resolution.",
+        "description": "Front-end development and integration work using React.js, Next.js and TypeScript, including UI integration, code auditing and bug resolution.",
+        "role": "Front-End Developer",
+        "responsibilities": [
+          "UI integration",
+          "Code auditing",
+          "Bug resolution"
+        ],
+        "seo": {
+          "title": "Flyer.be Project",
+          "description": "Front-end development and integration work using React.js, Next.js and TypeScript."
+        }
       },
       "xii-school": {
-        "description": "Mobile application developed with React Native."
+        "summary": "Mobile application developed with React Native.",
+        "description": "Mobile application developed with React Native.",
+        "role": "Front-End Developer",
+        "responsibilities": [],
+        "seo": {
+          "title": "XII School Project",
+          "description": "Mobile application developed with React Native."
+        }
       }
+    },
+    "detailLabels": {
+      "caseStudy": "Project Case Study",
+      "stack": "Stack",
+      "visit": "Visit {domain}",
+      "overview": "Overview",
+      "contribution": "My contribution",
+      "functionalScope": "Functional Scope",
+      "engineeringApproach": "Engineering Approach",
+      "engineeringChallenges": "Engineering challenges",
+      "solutionsApproach": "Solutions & approach",
+      "technologies": "Technologies",
+      "productReference": "Product Reference",
+      "productReferenceCaptionPrefix": "Live product reference",
+      "backToProjects": "Back to projects",
+      "fallbackContribution": "Worked on {title} as a {role}{company, select, other { at {company}}}."
     }
   },
   "Experience": {
@@ -212,6 +357,24 @@
         "message": "Message must be at least 20 characters.",
         "messageMax": "Message is too long."
       }
+    }
+  },
+  "Errors": {
+    "notFound": {
+      "eyebrow": "404",
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or may have moved.",
+      "backHome": "Back to home"
+    },
+    "runtime": {
+      "eyebrow": "Something went wrong",
+      "title": "The portfolio could not be loaded.",
+      "description": "Please try again, or return to the homepage.",
+      "tryAgain": "Try again",
+      "backHome": "Back to home"
+    },
+    "loading": {
+      "portfolio": "Loading portfolio..."
     }
   }
 }

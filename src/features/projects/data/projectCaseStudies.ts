@@ -1,4 +1,23 @@
-import type { ProjectCaseStudy } from "./types";
+import type {
+  ProjectCaseStudy,
+  ProjectFunctionalArea,
+  ProjectLink,
+  ProjectSeoMetadata,
+} from "./types";
+
+export interface ProjectCaseStudyLocalization {
+  readonly summary?: string;
+  readonly description?: string;
+  readonly role?: string;
+  readonly period?: string;
+  readonly technicalScope?: readonly string[];
+  readonly functionalScope?: readonly ProjectFunctionalArea[];
+  readonly engineeringApproach?: readonly string[];
+  readonly responsibilities?: readonly string[];
+  readonly productReferenceNote?: string;
+  readonly links?: readonly Pick<ProjectLink, "id" | "label">[];
+  readonly seo?: ProjectSeoMetadata;
+}
 
 export const projectCaseStudies = [
   {
@@ -154,4 +173,38 @@ export function getProjectCaseStudyBySlug(
   slug: string,
 ): ProjectCaseStudy | undefined {
   return projectCaseStudies.find((project) => project.slug === slug);
+}
+
+export function localizeProjectCaseStudy(
+  project: ProjectCaseStudy,
+  localization: ProjectCaseStudyLocalization,
+): ProjectCaseStudy {
+  const localizedLinks =
+    project.links?.map((link) => {
+      const localizedLink = localization.links?.find(
+        (candidate) => candidate.id === link.id,
+      );
+
+      return {
+        ...link,
+        label: localizedLink?.label ?? link.label,
+      };
+    }) ?? project.links;
+
+  return {
+    ...project,
+    summary: localization.summary ?? project.summary,
+    description: localization.description ?? project.description,
+    role: localization.role ?? project.role,
+    period: localization.period ?? project.period,
+    technicalScope: localization.technicalScope ?? project.technicalScope,
+    functionalScope: localization.functionalScope ?? project.functionalScope,
+    engineeringApproach:
+      localization.engineeringApproach ?? project.engineeringApproach,
+    responsibilities: localization.responsibilities ?? project.responsibilities,
+    productReferenceNote:
+      localization.productReferenceNote ?? project.productReferenceNote,
+    links: localizedLinks,
+    seo: localization.seo ?? project.seo,
+  };
 }
