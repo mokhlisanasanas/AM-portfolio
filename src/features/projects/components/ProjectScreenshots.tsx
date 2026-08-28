@@ -7,13 +7,18 @@ interface ProjectScreenshotsProps {
   readonly screenshots?: readonly ProjectScreenshot[];
   readonly note?: string;
   readonly number?: string;
+  readonly title: string;
+  readonly captionPrefix: string;
 }
 
-function getScreenshotCaption(screenshot: ProjectScreenshot): string | undefined {
+function getScreenshotCaption(
+  screenshot: ProjectScreenshot,
+  captionPrefix: string,
+): string | undefined {
   if (screenshot.type === "product-reference") {
     return screenshot.caption
-      ? `Live product reference — ${screenshot.caption}`
-      : "Live product reference";
+      ? `${captionPrefix} - ${screenshot.caption}`
+      : captionPrefix;
   }
 
   return screenshot.caption;
@@ -23,6 +28,8 @@ export function ProjectScreenshots({
   screenshots,
   note,
   number = "06",
+  title,
+  captionPrefix,
 }: ProjectScreenshotsProps) {
   if (screenshots === undefined || screenshots.length === 0) {
     return null;
@@ -40,7 +47,7 @@ export function ProjectScreenshots({
         <div className="space-y-6 md:col-span-11">
           <div className="space-y-4">
             <Heading id="project-screenshots" level={2} size="section">
-              Product Reference
+              {title}
             </Heading>
             {note ? (
               <p className="max-w-3xl text-[length:var(--typography-size-body)] leading-[var(--line-height-relaxed)] text-[var(--color-text-secondary)]">
@@ -50,7 +57,7 @@ export function ProjectScreenshots({
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {screenshots.map((screenshot) => {
-              const caption = getScreenshotCaption(screenshot);
+              const caption = getScreenshotCaption(screenshot, captionPrefix);
 
               return (
                 <figure key={screenshot.id} className="space-y-3">

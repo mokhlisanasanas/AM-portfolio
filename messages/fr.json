@@ -35,7 +35,13 @@
     "emailAria": "Envoyer un email à Anas Mokhlis",
     "linkedinAria": "Visiter le profil LinkedIn d'Anas Mokhlis",
     "downloadCv": "Télécharger le CV",
-    "downloadCvAria": "Télécharger le CV d'Anas Mokhlis"
+    "downloadCvAria": "Télécharger le CV d'Anas Mokhlis",
+    "seo": {
+      "home": {
+        "title": "Anas Mokhlis - Développeur Front-End",
+        "description": "Développeur Front-End spécialisé en React, Next.js et TypeScript, avec un focus sur l'architecture frontend évolutive, la performance, l'accessibilité et les expériences web modernes."
+      }
+    }
   },
   "Hero": {
     "eyebrow": "Ingénieur Front-End / React - Next.js - TypeScript",
@@ -75,14 +81,153 @@
     },
     "items": {
       "myinwi": {
-        "description": "Une experience web moderne de self-care telecom."
+        "summary": "Une expérience web moderne de self-care telecom.",
+        "description": "MyInwi s'inscrit dans le domaine du self-care telecom et a été développé comme application web lors d'un travail front-end chez Gear9. La stack d'implémentation vérifiée est Next.js, React et TypeScript.",
+        "role": "Développeur Front-End",
+        "technicalScope": [
+          "Application web Next.js",
+          "Développement d'interfaces React",
+          "Implémentation frontend TypeScript"
+        ],
+        "functionalScope": [
+          {
+            "id": "catalog-products",
+            "title": "Catalogue et produits",
+            "items": [
+              "Catalogue produits et filtrage",
+              "Offres mobiles",
+              "Smartphones",
+              "Produits de recharge",
+              "Stock et disponibilité commerciale"
+            ]
+          },
+          {
+            "id": "customer-authentication",
+            "title": "Client et authentification",
+            "items": [
+              "Parcours OTP",
+              "Profil client",
+              "Informations de ligne et de produit"
+            ]
+          },
+          {
+            "id": "billing-payment",
+            "title": "Facturation et paiement",
+            "items": [
+              "Factures B2C et B2B",
+              "Historique des factures",
+              "Téléchargement des factures",
+              "Parcours de paiement par carte"
+            ]
+          },
+          {
+            "id": "mobile-services",
+            "title": "Services mobiles",
+            "items": [
+              "Statut roaming",
+              "Services liés à l'eSIM"
+            ]
+          },
+          {
+            "id": "portability",
+            "title": "Portabilité",
+            "items": [
+              "Parcours de portabilité du numéro",
+              "Gestion du RIO",
+              "Sélection de l'opérateur et du produit"
+            ]
+          },
+          {
+            "id": "content-discovery",
+            "title": "Contenu et découverte",
+            "items": [
+              "Recherche",
+              "FAQ",
+              "Filtrage presse et contenu",
+              "Pagination et chargement infini lorsque nécessaire"
+            ]
+          },
+          {
+            "id": "forms-validation",
+            "title": "Formulaires et validation",
+            "items": [
+              "Gestion et validation des formulaires",
+              "Validation des numéros de téléphone marocains",
+              "Saisie utilisateur et gestion des erreurs"
+            ]
+          }
+        ],
+        "engineeringApproach": [
+          "Architecture de composants réutilisables",
+          "Développement frontend typé",
+          "Intégration API",
+          "Gestion d'état",
+          "Validation de formulaires",
+          "Implémentation responsive",
+          "Considérations d'accessibilité",
+          "Structure frontend maintenable"
+        ],
+        "responsibilities": [
+          "Développement front-end avec React, Next.js et TypeScript.",
+          "Intégration d'UI et de composants réutilisables.",
+          "Intégration des interfaces frontend avec les API backend.",
+          "Implémentation d'interfaces responsive.",
+          "Gestion et validation des formulaires.",
+          "Débogage et maintenance frontend.",
+          "Considérations d'accessibilité et de qualité frontend."
+        ],
+        "productReferenceNote": "Des vues sélectionnées de l'expérience digitale publique actuelle d'inwi sont présentées pour contextualiser le produit.",
+        "links": [
+          {
+            "id": "myinwi-case-study",
+            "label": "Voir l'étude de cas"
+          }
+        ],
+        "seo": {
+          "title": "Projet MyInwi",
+          "description": "Une expérience web moderne de self-care telecom développée avec Next.js, React et TypeScript."
+        }
       },
       "flyer-be": {
-        "description": "Développement frontend et intégration avec React.js, Next.js et TypeScript, incluant l'intégration UI, l'audit de code et la résolution de bugs."
+        "summary": "Développement frontend et intégration avec React.js, Next.js et TypeScript, incluant l'intégration UI, l'audit de code et la résolution de bugs.",
+        "description": "Développement frontend et intégration avec React.js, Next.js et TypeScript, incluant l'intégration UI, l'audit de code et la résolution de bugs.",
+        "role": "Développeur Front-End",
+        "responsibilities": [
+          "Intégration UI",
+          "Audit de code",
+          "Résolution de bugs"
+        ],
+        "seo": {
+          "title": "Projet Flyer.be",
+          "description": "Développement frontend et intégration avec React.js, Next.js et TypeScript."
+        }
       },
       "xii-school": {
-        "description": "Application mobile développée avec React Native."
+        "summary": "Application mobile développée avec React Native.",
+        "description": "Application mobile développée avec React Native.",
+        "role": "Développeur Front-End",
+        "responsibilities": [],
+        "seo": {
+          "title": "Projet XII School",
+          "description": "Application mobile développée avec React Native."
+        }
       }
+    },
+    "detailLabels": {
+      "caseStudy": "Étude de cas projet",
+      "stack": "Stack",
+      "visit": "Visiter {domain}",
+      "overview": "Vue d'ensemble",
+      "contribution": "Ma contribution",
+      "functionalScope": "Périmètre fonctionnel",
+      "engineeringApproach": "Approche technique",
+      "engineeringChallenges": "Défis techniques",
+      "solutionsApproach": "Solutions et approche",
+      "technologies": "Technologies",
+      "productReference": "Référence produit",
+      "productReferenceCaptionPrefix": "Référence du produit en ligne",
+      "backToProjects": "Retour aux projets",
+      "fallbackContribution": "Travail sur {title} en tant que {role}{company, select, other { chez {company}}}."
     }
   },
   "Experience": {
@@ -212,6 +357,24 @@
         "message": "Le message doit contenir au moins 20 caractères.",
         "messageMax": "Le message est trop long."
       }
+    }
+  },
+  "Errors": {
+    "notFound": {
+      "eyebrow": "404",
+      "title": "Page introuvable",
+      "description": "La page que vous recherchez n'existe pas ou a peut-être été déplacée.",
+      "backHome": "Retour à l'accueil"
+    },
+    "runtime": {
+      "eyebrow": "Une erreur est survenue",
+      "title": "Le portfolio n'a pas pu être chargé.",
+      "description": "Veuillez réessayer ou retourner à l'accueil.",
+      "tryAgain": "Réessayer",
+      "backHome": "Retour à l'accueil"
+    },
+    "loading": {
+      "portfolio": "Chargement du portfolio..."
     }
   }
 }
